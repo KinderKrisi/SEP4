@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AngularFE\src\app\_helper\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="AngularFE\**" />
+    <Content Remove="AngularFE\**" />
+    <EmbeddedResource Remove="AngularFE\**" />
+    <None Remove="AngularFE\**" />
   </ItemGroup>
 
   <ItemGroup>
