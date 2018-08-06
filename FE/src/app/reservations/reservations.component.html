@@ -1,0 +1,13 @@
+<h2>Reservations</h2>
+<ul>
+  <li *ngFor="let reservation of reservations">
+    <span> {{reservation.id}}</span>
+    <span> {{reservation.place}}</span>
+    <span> {{reservation.plate}}</span>
+
+  </li>
+
+</ul>
+<div *ng-if="isAdmin">
+<dashboard></dashboard>
+</div>
