@@ -32,6 +32,10 @@ namespace API
                 opt.UseInMemoryDatabase("Reservation"));
             services.AddDbContext<UserContext>(opt =>
                 opt.UseInMemoryDatabase("User"));
+            services.AddDbContext<MovieContext>(opt =>
+                opt.UseInMemoryDatabase("Movie"));
+            services.AddDbContext<MovieSeatContext>(opt =>
+                opt.UseInMemoryDatabase("MovieSeat"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

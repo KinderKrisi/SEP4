@@ -20,7 +20,7 @@ namespace API.Controllers
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new User { name = "pheonick", password = "martin", admin = true });
+                _context.Users.Add(new User { email = "mail@m.com", password = "martin",firstName = "Martin", lastName = "Krisko", phoneNumber = "71398977", admin = true });
                 _context.SaveChanges();
             }
         }
@@ -57,8 +57,11 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            _user.name = user.name;
+            _user.email = user.email;
             _user.password = user.password;
+            _user.firstName = user.firstName;
+            _user.lastName = user.lastName;
+            _user.phoneNumber = user.phoneNumber;
             _user.admin = user.admin;
 
             _context.Users.Update(_user);
