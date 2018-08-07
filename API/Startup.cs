@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API
 {
@@ -27,6 +30,23 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "http://localhost:4200",
+                    ValidAudience = "http://localhost:4200",
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes("sxdcfgvbjhnmasaesrxedtcfvygbuhnijhbgvyfctdrxsxecrvtbynasuvtaug"))
+                };
+            });
+
+            */
             services.AddCors();
             services.AddDbContext<ReservationContext>(opt =>
                 opt.UseInMemoryDatabase("Reservation"));
@@ -46,8 +66,12 @@ namespace API
             {
                 app.UseHsts();
             }
+            /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
+
+            app.UseAuthentication();
+            */
             app.UseCors(builder =>
-                builder.WithOrigins("http://localhost:4200"));
+            builder.WithOrigins("http://localhost:4200"));
             app.UseHttpsRedirection();
             app.UseMvc();
         }
