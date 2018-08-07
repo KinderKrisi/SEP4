@@ -27,6 +27,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<ReservationContext>(opt =>
                 opt.UseInMemoryDatabase("Reservation"));
             services.AddDbContext<UserContext>(opt =>
@@ -45,7 +46,8 @@ namespace API
             {
                 app.UseHsts();
             }
-
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:4200"));
             app.UseHttpsRedirection();
             app.UseMvc();
         }

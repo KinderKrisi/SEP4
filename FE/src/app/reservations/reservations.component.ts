@@ -11,6 +11,7 @@ import { ReservationService } from '../_services/reservation.service';
 export class ReservationsComponent implements OnInit {
 
   reservations: Reservation[];
+  reservation: Reservation;
 
   constructor(private reservationService: ReservationService) { }
 
@@ -18,7 +19,10 @@ export class ReservationsComponent implements OnInit {
       this.getReservations();
   }
   getReservations(): void {
-    this.reservationService.getReservations().subscribe(reservations => this.reservations = reservations)
+    this.reservationService.getReservations().subscribe(reservations => this.reservations = reservations);
+  }
+  getReservationById(id): void {
+    this.reservationService.getReservationById(id).subscribe(reservation => this.reservation = reservation);
   }
 
 }

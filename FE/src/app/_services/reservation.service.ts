@@ -25,8 +25,14 @@ export class ReservationService {
   /** GET all reservations from the server */
   getReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(this.reservationsUrl).pipe(
-      tap(reservations => console.log('fetched reservations')),
+      tap(reservations => console.log('fetched reservations', reservations)),
       catchError(handleError('getReservations', []))
+    )
+  }
+  getReservationById(id): Observable<Reservation> {
+    return this.http.get<Reservation>(`${this.reservationsUrl}/${id}`).pipe(
+      tap(reservation => console.log('fetched reservation',  reservation)),
+      catchError(handleError('getReservationById', id))
     )
   }
 }
