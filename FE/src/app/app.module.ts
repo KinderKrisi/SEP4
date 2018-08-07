@@ -12,6 +12,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
 //TODO: Remove after server is live
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     MyReservationsComponent,
     ReservationsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
