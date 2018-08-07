@@ -60,12 +60,27 @@ namespace API.Controllers
             {
                 return NotFound();
             }
+            if(user.email != null) { 
             _user.email = user.email;
-            _user.password = user.password;
-            _user.firstName = user.firstName;
-            _user.lastName = user.lastName;
+            }
+
+            if (user.password != null)
+            {
+             _user.password = user.password;
+            }
+
+            if (user.firstName != null)
+            {
+             _user.firstName = user.firstName;
+            }
+
+            if (user.lastName != null)
+            {
+                _user.lastName = user.lastName;
+            }
+            if(user.phoneNumber != null) { 
             _user.phoneNumber = user.phoneNumber;
-            _user.admin = user.admin;
+            }
 
             _context.Users.Update(_user);
             _context.SaveChanges();
