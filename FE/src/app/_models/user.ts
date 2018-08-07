@@ -1,11 +1,10 @@
 import { Reservation } from "./reservation";
 
 export class User {
-    id: number;
-    username: string;
+    email: string;
     password: string;
     firstName: string;
-    lastName: String;
-    plate: string;
-    reservations: Reservation[];
+    lastName: string;
+    phoneNumber: string;
+    role: string;
 }

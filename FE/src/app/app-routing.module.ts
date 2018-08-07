@@ -5,13 +5,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { MovieComponent } from './movie/movie.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'myReservations', component: MyReservationsComponent},
   {path: 'reservations', component: ReservationsComponent},
-  {path: 'movies', component: MovieComponent}
+  {path: 'movies', component: MovieComponent},
+  {path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({

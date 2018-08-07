@@ -20,8 +20,16 @@ export class UserService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
-      tap(reservations => console.log('fetched reservations')),
+      tap(reservations => console.log('fetched reservations', reservations)),
       catchError(handleError('getReservations', []))
+    )
+  }
+
+  Registration(user: User): Observable<User>{
+    
+    return this.http.post<User>(this.userUrl, user).pipe(
+      tap(registration => console.log('registred user', registration)),
+      catchError(handleError('registration', user))
     )
   }
 }
