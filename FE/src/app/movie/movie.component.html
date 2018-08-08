@@ -1,8 +1,107 @@
-<p>List of upcoming movies</p>
-<ul *ngFor="let movie of movies">
-<li>
-  Movie name: {{movie.name}} <br/>
-  Length: {{movie.length}}  <br/>
-  Language: {{movie.language}} 
-</li>
-</ul>
+<div class="container ui-g ui-fluid">
+  <div class="ui-g-12">
+    <h1>List of upcoming movies</h1>
+  </div>
+  <div class="ui-g-12">
+    <ul *ngFor="let movie of movies">
+      <li>
+        {{movie.name}}
+        <br/> {{movie.length}} minutes
+        <br/> {{movie.language}}
+      </li>
+    </ul>
+  </div>
+  <div class="movietheater ui-g-4">
+    <div class="ui-g-12 seatsRow">
+      <div class="ui-g-2">
+        <p>1</p>
+      </div>
+      <div class="ui-g-2">
+        <p>2</p>
+      </div>
+      <div class="ui-g-2">
+        <p>3</p>
+      </div>
+      <div class="ui-g-2">
+        <p>4</p>
+      </div>
+      <div class="ui-g-2">
+        <p>5</p>
+      </div>
+    </div>
+    <div class="ui-g-12 seatsRow">
+      <div class="ui-g-2">
+        <p>1</p>
+      </div>
+      <div class="ui-g-2">
+        <p>2</p>
+      </div>
+      <div class="ui-g-2">
+        <p>3</p>
+      </div>
+      <div class="ui-g-2">
+        <p>4</p>
+      </div>
+      <div class="ui-g-2">
+        <p>5</p>
+      </div>
+    </div>
+    <div class="ui-g-12 seatsRow">
+      <div class="ui-g-2">
+        <p>1</p>
+      </div>
+      <div class="ui-g-2">
+        <p>2</p>
+      </div>
+      <div class="ui-g-2">
+        <p>3</p>
+      </div>
+      <div class="ui-g-2">
+        <p>4</p>
+      </div>
+      <div class="ui-g-2">
+        <p>5</p>
+      </div>
+    </div>
+    <div class="ui-g-12 seatsRow">
+      <div class="ui-g-2">
+        <p>1</p>
+      </div>
+      <div class="ui-g-2">
+        <p>2</p>
+      </div>
+      <div class="ui-g-2">
+        <p>3</p>
+      </div>
+      <div class="ui-g-2">
+        <p>4</p>
+      </div>
+      <div class="ui-g-2">
+        <p>5</p>
+      </div>
+    </div>
+  </div>
+  <div class="bookSeating ui-g-8">
+    <div class="ui-inputgroup ui-g-12">
+      <span class="ui-inputgroup-addon">
+        <i class="fa fa-ticket"></i>
+      </span>
+      <label> Numberof tickets
+        <br/> 2 </label>
+
+    </div>
+    <div class="ui-inputgroup ui-g-12">
+      <span class="ui-inputgroup-addon">
+        <i class="fa fa-money"></i>
+      </span>
+      <label> Total to pay &nbsp;
+        <br/> 15
+
+      </label>
+      <span class="ui-inputgroup-addon">DKK</span>
+    </div>
+    <div class="ui-g-3">
+      <button pButton type="button" class="ui-button-raised ui-button-rounded"> Complete booking</button>
+    </div>
+  </div>
+</div>
