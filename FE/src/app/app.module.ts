@@ -18,7 +18,6 @@ import { MovieComponent } from './movie/movie.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
-import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -28,15 +27,13 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     MyReservationsComponent,
     ReservationsComponent,
     RegistrationComponent,
-    MovieComponent,
-    AdminUsersComponent
+    MovieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     ReactiveFormsModule,
     ButtonModule,
     PasswordModule
