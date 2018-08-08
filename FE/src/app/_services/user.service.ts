@@ -25,16 +25,24 @@ export class UserService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
-      tap(reservations => console.log('fetched reservations', reservations)),
-      catchError(handleError('getReservations', []))
+      tap(users => console.log('fetched reservations', users)),
+      catchError(handleError('getUsers', []))
     )
   }
 
-  Registration(user: User): Observable<User>{
-    
+  registration(user: User): Observable<User>{
     return this.http.post<User>(this.userUrl, user).pipe(
       tap(registration => console.log('registred user', registration)),
       catchError(handleError('registration', user))
     )
   }
+  
+  update(user: User): Observable<User> {
+    return this.http.put<User>(`${this.userUrl}/${user.id}`, user).pipe(
+      tap(user => console.log('user has been changed', user)),
+      catchError(handleError('updateUser', user))
+    )
+  }
+  
+  
 }

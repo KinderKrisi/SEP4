@@ -16,6 +16,7 @@ import { MovieComponent } from './movie/movie.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MyReservationsComponent,
     ReservationsComponent,
     RegistrationComponent,
-    MovieComponent
+    MovieComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,
