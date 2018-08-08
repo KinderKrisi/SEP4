@@ -1,6 +1,43 @@
-li{
-    display: block;
-color: white;
+.container {
+  padding: 1em;
+}
+
+h1 {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  text-align: center;
+  width: 10%;
+  float: left;
+  display: block;
+  background-color: orangered;
+  color: black;
+}
+
+p {
+  text-align: center;
+  background-color: white;
+}
+label{
+background-color: orangered;
 text-align: center;
-padding: 16px;
-text-decoration: none;}
+width: 15em;
+}
+
+.seatsRow {
+  height: 4em;
+  padding: 0;
+  padding-left: 1em;
+  background-color: orangered;
+}
+.bookSeating{
+    padding: 0;
+}
