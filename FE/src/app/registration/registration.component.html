@@ -9,9 +9,9 @@
           <div class="col-md-6 offset-md-3">
               <h2>Angular 6 Reactive Form Validation</h2>
               <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                  <div class="form-group">
-                      <label>First Name</label>
-                      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                    <input formControlName="firstName"pInputText placeholder="First name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                       <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                           <div *ngIf="f.firstName.errors.required">First Name is required</div>
                       </div>
