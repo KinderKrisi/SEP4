@@ -24,7 +24,7 @@ namespace API.Controllers
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new User { email = "mail@m.com", password = "martin",firstName = "Martin", lastName = "Krisko", phoneNumber = "71398977", admin = true });
+                _context.Users.Add(new User { email = "mail@m.com", password = "martin",firstName = "Martin", lastName = "Krisko", phoneNumber = "71398977", role = "admin"});
                 _context.SaveChanges();
             }
         }

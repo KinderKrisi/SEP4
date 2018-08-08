@@ -1,10 +1,7 @@
+<div *ngFor="let movie of movies">
 <p>
-  movie works!
+  Movie name: {{movie.name}} <br/>
+  Length: {{movie.length}}  <br/>
+  Language: {{movie.language}} 
 </p>
-<ul *ngFor="let movie of movies">
-<li>
-  {{movie.name}}
-  {{movie.length}}
-  {{movie.language}} 
-</li>
-</ul>
+</div>
