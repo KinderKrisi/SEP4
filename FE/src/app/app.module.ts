@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
-import { ReservationsComponent } from './reservations/reservations.component';
+import { ParkingReservationsComponent } from './parking-reservations/parking-reservations.component';
 
 //TODO: Remove after server is live
 import { HttpClientModule } from '@angular/common/http';
@@ -16,9 +16,9 @@ import { MovieComponent } from './movie/movie.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
-import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     DashboardComponent,
     LoginComponent,
     MyReservationsComponent,
-    ReservationsComponent,
+    ParkingReservationsComponent,
     RegistrationComponent,
     MovieComponent,
     AdminUsersComponent

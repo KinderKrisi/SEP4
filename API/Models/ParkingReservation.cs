@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class Reservation
+    public class ParkingReservation
     {
-        public long Id { get; set; }
+        public long id { get; set; }
         public string place { get; set; }
         public string plate { get; set; }
     }

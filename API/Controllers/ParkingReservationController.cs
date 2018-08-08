@@ -9,27 +9,27 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationController : ControllerBase
+    public class ParkingReservationController : ControllerBase
     {
-        private readonly ReservationContext _context;
+        private readonly ParkingReservationContext _context;
 
-        public ReservationController(ReservationContext context)
+        public ParkingReservationController(ParkingReservationContext context)
         {
             _context = context;
 
             if (_context.Reservations.Count() == 0)
             {
-                _context.Reservations.Add(new Reservation { place = "A5", plate = "QWERTY" });
+                _context.Reservations.Add(new ParkingReservation { place = "A5", plate = "QWERTY" });
                 _context.SaveChanges();
             }
         }
         [HttpGet]
-        public ActionResult<List<Reservation>> GetAll()
+        public ActionResult<List<ParkingReservation>> GetAll()
         {
             return _context.Reservations.ToList();
         }
         [HttpGet("{id}", Name = "GetReservation")]
-        public ActionResult<Reservation> GetById(long id)
+        public ActionResult<ParkingReservation> GetById(long id)
         {
             var item = _context.Reservations.Find(id);
             if (item == null)
@@ -39,15 +39,15 @@ namespace API.Controllers
             return item;
         }
         [HttpPost]
-        public IActionResult Create(Reservation res)
+        public IActionResult Create(ParkingReservation res)
         {
             _context.Reservations.Add(res);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetReservation", new Reservation { Id = res.Id }, res);
+            return CreatedAtRoute("GetParkingReservation", new ParkingReservation { id = res.id }, res);
         }
         [HttpPut("{id}")]
-        public IActionResult Update(long id, Reservation res)
+        public IActionResult Update(long id, ParkingReservation res)
         {
             var _reservation = _context.Reservations.Find(id);
             if (_reservation == null)

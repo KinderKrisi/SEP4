@@ -11,5 +11,6 @@ namespace API.Models
         public string name { get; set; }
         public int length { get; set; }
         public string language { get; set; }
+        public MovieSeats seats { get; set; }
     }
 }

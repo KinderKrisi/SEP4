@@ -14,6 +14,7 @@ namespace API.Controllers
     {
 
         private readonly MovieContext _context;
+        
 
         public MovieController(MovieContext context)
         {
@@ -21,14 +22,14 @@ namespace API.Controllers
 
             if (_context.Movies.Count() == 0)
             {
-                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english"});
-                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 150, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 178, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 160, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 178, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 6", length = 160, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 7", length = 178, language = "english" });
-                _context.Movies.Add(new Movie { name = "Henry Peter 7.5", length = 160, language = "english" });
+                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 150, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 178, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 160, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 178, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 6", length = 160, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 7", length = 178, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie { name = "Henry Peter 7.5", length = 160, language = "english", seats = new MovieSeats() });
                 _context.SaveChanges();
             }
         }

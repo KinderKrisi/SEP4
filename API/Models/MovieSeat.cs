@@ -12,6 +12,15 @@ namespace API.Models
         public int row { get; set; }
         public int seatNumber { get; set; }
         public bool reserved { get; set; }
-        public string reservedBy { get; set; } // user which has reserved the seat
+        public User user { get; set; } // user which has reserved the seat
+
+        public MovieSeat(int row, int seatNumber, bool reserved)
+        {
+            this.row = row;
+            this.seatNumber = seatNumber;
+            this.reserved = reserved;
+            this.user = user;
+
+        }
     }
 }
