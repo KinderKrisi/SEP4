@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   createUser(user: User): void {
-    this.userService.Registration(this.user).subscribe();
+    this.userService.registration(this.user).subscribe();
   }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
@@ -48,10 +48,8 @@ export class RegistrationComponent implements OnInit {
       "password": this.registerForm.get('password').value,
       'firstName': this.registerForm.get('firstName').value,
       'lastName': this.registerForm.get('lastName').value,
-      'phoneNumber': this.registerForm.get('phoneNumber').value,
-      'role': "user"
-    }
-    alert('SUCCESS!! :-)')
+      'phoneNumber': this.registerForm.get('phoneNumber').value
+      }
     console.log('user created ', this.user);
     this.createUser(this.user);
   }
