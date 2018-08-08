@@ -16,6 +16,8 @@ import { MovieComponent } from './movie/movie.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
+import {PasswordModule} from 'primeng/password';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 @NgModule({
@@ -34,7 +36,10 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
