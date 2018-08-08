@@ -16,6 +16,8 @@ import { MovieComponent } from './movie/movie.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
