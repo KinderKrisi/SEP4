@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
- 
+
 
 
 import { User } from '../_models/user';
@@ -16,11 +16,9 @@ export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-user: User;
-name: string;
-password: string;
+  user: User;
 
-  constructor(private userService: UserService,private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -28,47 +26,34 @@ password: string;
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      phoneNumber:['', [Validators.required, Validators.minLength(8)]]
-  });
+      phoneNumber: ['', [Validators.required, Validators.minLength(8)]]
+    });
   }
 
-createUser(user: User): void {
-  this.userService.Registration(this.user).subscribe();
-}
-
-submit(email:string, password: string, firstName:string, lastName:string, phoneNumber:string): void{
-  this.user = {
-    'email':email,
-    "password":password,
-    'firstName': firstName,
-    'lastName': lastName,
-    'phoneNumber': phoneNumber,
-    'role': "user"
+  createUser(user: User): void {
+    this.userService.Registration(this.user).subscribe();
   }
-  console.log('user created ', this.user);
-  this.createUser(this.user);
-}
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
- 
-    onSubmit() {
-        this.submitted = true;
- 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
-        this.user = {
-          'email':this.registerForm.get('email').value,
-          "password":this.registerForm.get('password').value,
-          'firstName':this.registerForm.get('firstName').value ,
-          'lastName':this.registerForm.get('lastName').value ,
-          'phoneNumber':this.registerForm.get('phoneNumber').value ,
-          'role': "user"
-        }
-        alert('SUCCESS!! :-)')  
-        console.log('user created ', this.user);
-        this.createUser(this.user);
-      }
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
     }
+    this.user = {
+      'email': this.registerForm.get('email').value,
+      "password": this.registerForm.get('password').value,
+      'firstName': this.registerForm.get('firstName').value,
+      'lastName': this.registerForm.get('lastName').value,
+      'phoneNumber': this.registerForm.get('phoneNumber').value,
+      'role': "user"
+    }
+    alert('SUCCESS!! :-)')
+    console.log('user created ', this.user);
+    this.createUser(this.user);
+  }
+}
 

@@ -74,8 +74,10 @@ namespace API
 
             app.UseAuthentication();
             */
-            app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:4200"));
+
+            //Enabling cors for every header and method coming from localhost:42000
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }

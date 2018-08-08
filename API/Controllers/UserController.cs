@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -47,6 +48,10 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
+            if (user.role != "user")
+            {
+                user.role = "user";
+            }
             _context.Users.Add(user);
             _context.SaveChanges();
 
@@ -81,7 +86,7 @@ namespace API.Controllers
             if(user.phoneNumber != null) { 
             _user.phoneNumber = user.phoneNumber;
             }
-
+      
             _context.Users.Update(_user);
             _context.SaveChanges();
             return NoContent();
