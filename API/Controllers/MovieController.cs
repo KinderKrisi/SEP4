@@ -22,14 +22,11 @@ namespace API.Controllers
 
             if (_context.Movies.Count() == 0)
             {
-                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 150, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 178, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 160, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 178, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 6", length = 160, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 7", length = 178, language = "english", seats = new MovieSeats() });
-                _context.Movies.Add(new Movie { name = "Henry Peter 7.5", length = 160, language = "english", seats = new MovieSeats() });
+                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165) ,seats = new MovieSeats(), price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
                 _context.SaveChanges();
             }
         }
@@ -68,9 +65,33 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            _movie.name = _movie.name;
+            if(movie.name != null)
+            { 
+            _movie.name = movie.name;
+            }
+            if(movie.length != 0) { 
             _movie.length = movie.length;
+            }
+            if(movie.language != null) { 
             _movie.language = movie.language;
+            }
+
+            if (movie.startTime != null)
+            {
+                _movie.startTime = movie.startTime;
+            }
+            if (movie.endTime != null)
+            {
+                _movie.endTime = movie.endTime;
+            }
+            if(movie.price != 0) { 
+                _movie.price = movie.price;
+            }
+
+            if (movie.seats != null)
+            {
+                _movie.seats = movie.seats;
+            }
 
             _context.Movies.Update(_movie);
             _context.SaveChanges();
