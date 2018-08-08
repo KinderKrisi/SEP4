@@ -28,4 +28,22 @@ export class MovieService {
         catchError(handleError('getMovies', []))
       )
     }
+    getMovie(id): Observable<Movie>{
+      return this.http.get<Movie>(`${this.movieUrl}/${id}`).pipe(
+        tap(movie => console.log('fetched movie', movie)),
+        catchError(handleError('getMovie', id))
+      )
+    }
+    createMovie(movie: Movie): Observable<Movie>{
+      return this.http.post<Movie>(this.movieUrl, movie).pipe(
+        tap(movie => console.log('created movie', movie)),
+        catchError(handleError('createMovie', movie))
+      )
+    }
+    updateMovie(id, movie: Movie): Observable<Movie>{
+      return this.http.put<Movie>(`${this.movieUrl}/${id}`, movie).pipe(
+        tap(movie => console.log('updated movie', movie)),
+        catchError(handleError('updateMovie', movie))
+      )
+    }
   }
