@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,19 +13,13 @@ namespace API.Models
         public int length { get; set; }
         public string language { get; set; }
         public DateTime startTime { get; set; }
-        public DateTime endTime;
-        public MovieSeats seats { get; set; }
+
+        [NotMapped]
+        public DateTime endTime => startTime.AddMinutes(length);
+        //public MovieSeats seats { get; set; }
+
+        public ICollection<MovieSeat> seats { get; set; } = new HashSet<MovieSeat>();
         public double price { get; set; }
-
-        public void setEndTime(int length, DateTime startTime )
-        {
-            endTime = startTime.AddMinutes(length);
-        }
-
-        public DateTime getEndTime()
-        {
-            return endTime;
-        }
-
+        
     }
 }

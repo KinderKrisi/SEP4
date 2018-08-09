@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace API
 {
@@ -48,12 +49,22 @@ namespace API
 
             */
             services.AddCors();
-            services.AddDbContext<ParkingReservationContext>(opt =>
-                opt.UseInMemoryDatabase("ParkingReservation"));
-            services.AddDbContext<UserContext>(opt =>
-                opt.UseInMemoryDatabase("User"));
+
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
+            });
+
+
+            //services.AddDbContext<ParkingReservationContext>(opt =>
+            //    opt.UseInMemoryDatabase("ParkingReservation"));
+            //services.AddDbContext<UserContext>(opt =>
+            //    opt.UseInMemoryDatabase("User"));
             services.AddDbContext<MovieContext>(opt =>
-                opt.UseInMemoryDatabase("Movie"));
+                opt.UseSqlServer("Data Source=localhost;Initial Catalog=Movie;Integrated Security=True;")
+                
+                );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
