@@ -4,9 +4,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable } from 'rxjs';
 
-import { ParkingReservation } from '../_models/parkingReservation';
+import { ParkingReservation } from '../../_models/parkingReservation';
 
-import { handleError } from '../_helper/handler';
+import { handleError } from '../../_helper/handler';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -3,9 +3,9 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
-import { User } from '../_models/user';
+import { User } from '../../_models/user';
 
-import { handleError } from '../_helper/handler';
+import { handleError } from '../../_helper/handler';
 import { Observable } from 'rxjs';
 
 const httpOptions = {

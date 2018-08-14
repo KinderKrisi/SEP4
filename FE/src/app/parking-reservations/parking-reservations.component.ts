@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ParkingReservation } from '../_models/parkingReservation';
-import { ParkingReservationService } from '../_services/parking-reservation.service';
+import { ParkingReservationService } from '../_services/parking-reservation/parking-reservation.service';
 
 @Component({
   selector: 'app-reservations',

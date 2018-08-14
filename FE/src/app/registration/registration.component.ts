@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { User } from '../_models/user';
-import { UserService } from '../_services/user.service';
+import { UserService } from '../_services/user/user.service';
 
 @Component({
   selector: 'app-registration',

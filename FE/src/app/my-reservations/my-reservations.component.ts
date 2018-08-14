@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ParkingReservationService } from '../_services/parking-reservation.service';
+import { ParkingReservationService } from '../_services/parking-reservation/parking-reservation.service';
 import { ParkingReservation } from '../_models/parkingReservation';
 
-import { MovieReservationService } from '../_services/movie-reservation.service';
+import { MovieReservationService } from '../_services/movie-reservation/movie-reservation.service';
 import { MovieReservation } from '../_models/movieReservation';
 
 
