@@ -16,5 +16,10 @@ namespace API.Models
         }
 
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<MovieSeat> MovieSeats{get; set;}
+        public DbSet<User> Users { get; set; }
+        public DbSet<ParkingReservation> Reservations { get; set; }
+
     }
 }

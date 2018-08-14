@@ -11,9 +11,9 @@ namespace API.Controllers
     [ApiController]
     public class ParkingReservationController : ControllerBase
     {
-        private readonly ParkingReservationContext _context;
+        private readonly MovieContext _context;
 
-        public ParkingReservationController(ParkingReservationContext context)
+        public ParkingReservationController(MovieContext context)
         {
             _context = context;
 

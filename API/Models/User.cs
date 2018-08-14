@@ -14,5 +14,6 @@ namespace API.Models
         public string lastName { get; set; }
         public string phoneNumber { get; set; }
         public string role { get; set; }
+        public ICollection<MovieSeat> MovieSeats { get; set; } = new HashSet<MovieSeat>();
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -22,11 +23,19 @@ namespace API.Controllers
 
             if (_context.Movies.Count() == 0)
             {
-                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165) ,seats = new MovieSeats(), price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 165, language = "english", startTime = DateTime.Now, endTime = DateTime.Now.AddMinutes(165), seats = new MovieSeats(), price = 150 });
+                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", startTime = DateTime.Now, price = 150, seats = new List<MovieSeat>()
+                {
+                    new MovieSeat()
+                    {
+                        reserved = true,
+                        row = 1,
+                        seatNumber = 1,
+                    }
+                }});
+                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
+                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
                 _context.SaveChanges();
             }
         }
@@ -34,7 +43,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<Movie>> GetAll()
         {
-            return _context.Movies.ToList();
+            return _context.Movies.Include(x => x.seats).ToList();
         }
 
         [HttpGet("{id}", Name = "GetMovie")]
@@ -80,10 +89,7 @@ namespace API.Controllers
             {
                 _movie.startTime = movie.startTime;
             }
-            if (movie.endTime != null)
-            {
-                _movie.endTime = movie.endTime;
-            }
+           
             if(movie.price != 0) { 
                 _movie.price = movie.price;
             }

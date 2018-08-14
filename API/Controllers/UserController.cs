@@ -16,9 +16,9 @@ namespace API.Controllers
     public class UserController : ControllerBase
     {
 
-        private readonly UserContext _context;
+        private readonly MovieContext _context;
 
-        public UserController(UserContext context)
+        public UserController(MovieContext context)
         {
             _context = context;
 
