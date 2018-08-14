@@ -16,15 +16,15 @@ namespace API.Controllers
     public class UserController : ControllerBase
     {
 
-        private readonly MovieContext _context;
+        private readonly CinemaContext _context;
 
-        public UserController(MovieContext context)
+        public UserController(CinemaContext context)
         {
             _context = context;
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new User { email = "mail@m.com", password = "martin",firstName = "Martin", lastName = "Krisko", phoneNumber = "71398977", role = "admin" });
+                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin",FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
                 _context.SaveChanges();
             }
         }
@@ -34,7 +34,7 @@ namespace API.Controllers
         {
             return _context.Users.ToList();
         }
-
+        
         [HttpGet("{id}", Name = "GetUser")]
         public ActionResult<User> GetById(long id)
         {
@@ -45,10 +45,11 @@ namespace API.Controllers
             }
             return item;
         }
+
         [HttpPost]
         public IActionResult Create(User user)
         {
-             user.role = "user";
+             user.Role = "user";
             _context.Users.Add(user);
             _context.SaveChanges();
 
@@ -62,26 +63,26 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            if(user.email != null) { 
-            _user.email = user.email;
+            if(user.Email != null) { 
+            _user.Email = user.Email;
             }
 
-            if (user.password != null)
+            if (user.Password != null)
             {
-             _user.password = user.password;
+             _user.Password = user.Password;
             }
 
-            if (user.firstName != null)
+            if (user.FirstName != null)
             {
-             _user.firstName = user.firstName;
+             _user.FirstName = user.FirstName;
             }
 
-            if (user.lastName != null)
+            if (user.LastName != null)
             {
-                _user.lastName = user.lastName;
+                _user.LastName = user.LastName;
             }
-            if(user.phoneNumber != null) { 
-            _user.phoneNumber = user.phoneNumber;
+            if(user.PhoneNumber != null) { 
+            _user.PhoneNumber = user.PhoneNumber;
             }
       
             _context.Users.Update(_user);

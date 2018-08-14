@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,6 +16,38 @@ namespace API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly CinemaContext _context;
+
+        public AuthController(CinemaContext context)
+        {
+            _context = context;
+
+            if (_context.Users.Count() == 0)
+            {
+                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin", FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
+                _context.SaveChanges();
+            }
+        }
+        /*
+        [HttpGet(Name = "login")]
+        public ActionResult<bool> LoginResult(string email, string password)
+        {
+            var result = CheckUser(email, password);
+            return result;
+        }
+        */
+
+        private bool CheckUser(string email, string password)
+        {
+            var result = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
+
+            if (result != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        
         [HttpPost("token")]
         public IActionResult Token()
         {
@@ -27,9 +60,9 @@ namespace API.Controllers
                 var userNameAndPass = userNameandPassEnc.Split(":");
 
                 //check in the DB user name and pass exist
-                if (userNameAndPass[0] == "Admin" && userNameAndPass[1] == "1234")
+                if (CheckUser(userNameAndPass[0], userNameAndPass[1]))
                 {
-                    var claimsData = new[] {new Claim(ClaimTypes.Name, userNameAndPass[0])};
+                    var claimsData = new[] { new Claim(ClaimTypes.Name, userNameAndPass[0]) };
                     var key = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes("sxdcfgvbjhnmasaesrxedtcfvygbuhnijhbgvyfctdrxsxecrvtbynasuvtaug"));
                     var signCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);

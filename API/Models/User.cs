@@ -8,12 +8,12 @@ namespace API.Models
     public class User
     {
         public long Id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string phoneNumber { get; set; }
-        public string role { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Role { get; set; }
         public ICollection<MovieSeat> MovieSeats { get; set; } = new HashSet<MovieSeat>();
     }
 }

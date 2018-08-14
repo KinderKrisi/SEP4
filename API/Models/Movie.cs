@@ -8,18 +8,18 @@ namespace API.Models
 {
     public class Movie
     {
-        public long id { get; set; }
-        public string name { get; set; }
-        public int length { get; set; }
-        public string language { get; set; }
-        public DateTime startTime { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public int Length { get; set; }
+        public string Language { get; set; }
+        public DateTime StartTime { get; set; }
 
         [NotMapped]
-        public DateTime endTime => startTime.AddMinutes(length);
-        //public MovieSeats seats { get; set; }
+        public DateTime EndTime => StartTime.AddMinutes(Length);
+        //public MovieSeats Seats { get; set; }
 
-        public ICollection<MovieSeat> seats { get; set; } = new HashSet<MovieSeat>();
-        public double price { get; set; }
+        public ICollection<MovieSeat> Seats { get; set; } = new HashSet<MovieSeat>();
+        public double Price { get; set; }
         
     }
 }

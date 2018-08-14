@@ -11,15 +11,15 @@ namespace API.Controllers
     [ApiController]
     public class ParkingReservationController : ControllerBase
     {
-        private readonly MovieContext _context;
+        private readonly CinemaContext _context;
 
-        public ParkingReservationController(MovieContext context)
+        public ParkingReservationController(CinemaContext context)
         {
             _context = context;
 
             if (_context.Reservations.Count() == 0)
             {
-                _context.Reservations.Add(new ParkingReservation { place = "A5", plate = "QWERTY" });
+                _context.Reservations.Add(new ParkingReservation { ParkingPlace = "A5", LicencePlate = "QWERTY" });
                 _context.SaveChanges();
             }
         }
@@ -44,7 +44,7 @@ namespace API.Controllers
             _context.Reservations.Add(res);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetParkingReservation", new ParkingReservation { id = res.id }, res);
+            return CreatedAtRoute("GetParkingReservation", new ParkingReservation { Id = res.Id }, res);
         }
         [HttpPut("{id}")]
         public IActionResult Update(long id, ParkingReservation res)
@@ -54,8 +54,8 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            _reservation.place = res.place;
-            _reservation.plate = res.plate;
+            _reservation.ParkingPlace = res.ParkingPlace;
+            _reservation.LicencePlate = res.LicencePlate;
 
             _context.Reservations.Update(_reservation);
             _context.SaveChanges();

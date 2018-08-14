@@ -14,28 +14,24 @@ namespace API.Controllers
     public class MovieController : ControllerBase
     {
 
-        private readonly MovieContext _context;
+        private readonly CinemaContext _context;
         
 
-        public MovieController(MovieContext context)
+        public MovieController(CinemaContext context)
         {
             _context = context;
 
             if (_context.Movies.Count() == 0)
             {
-                _context.Movies.Add(new Movie {name = "Henry Peter", length = 165, language = "english", startTime = DateTime.Now, price = 150, seats = new List<MovieSeat>()
+                _context.Movies.Add(new Movie {Name = "Henry Peter", Length = 165, Language = "english", StartTime = DateTime.Now, Price = 150, Seats = new List<MovieSeat>()
                 {
                     new MovieSeat()
                     {
-                        reserved = true,
-                        row = 1,
-                        seatNumber = 1,
+                        Reserved = true,
+                        Row = 1,
+                        SeatNumber = 1,
                     }
                 }});
-                _context.Movies.Add(new Movie { name = "Henry Peter 2", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 3", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 4", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
-                _context.Movies.Add(new Movie { name = "Henry Peter 5", length = 165, language = "english", startTime = DateTime.Now,  price = 150 });
                 _context.SaveChanges();
             }
         }
@@ -43,7 +39,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<Movie>> GetAll()
         {
-            return _context.Movies.Include(x => x.seats).ToList();
+            return _context.Movies.Include(x => x.Seats).ToList();
         }
 
         [HttpGet("{id}", Name = "GetMovie")]
@@ -63,7 +59,7 @@ namespace API.Controllers
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetMovie", new Movie { id = movie.id }, movie);
+            return CreatedAtRoute("GetMovie", new Movie { Id = movie.Id }, movie);
         }
 
         [HttpPut("{id}")]
@@ -74,29 +70,29 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            if(movie.name != null)
+            if(movie.Name != null)
             { 
-            _movie.name = movie.name;
+            _movie.Name = movie.Name;
             }
-            if(movie.length != 0) { 
-            _movie.length = movie.length;
+            if(movie.Length != 0) { 
+            _movie.Length = movie.Length;
             }
-            if(movie.language != null) { 
-            _movie.language = movie.language;
+            if(movie.Language != null) { 
+            _movie.Language = movie.Language;
             }
 
-            if (movie.startTime != null)
+            if (movie.StartTime != null)
             {
-                _movie.startTime = movie.startTime;
+                _movie.StartTime = movie.StartTime;
             }
            
-            if(movie.price != 0) { 
-                _movie.price = movie.price;
+            if(movie.Price != 0) { 
+                _movie.Price = movie.Price;
             }
 
-            if (movie.seats != null)
+            if (movie.Seats != null)
             {
-                _movie.seats = movie.seats;
+                _movie.Seats = movie.Seats;
             }
 
             _context.Movies.Update(_movie);

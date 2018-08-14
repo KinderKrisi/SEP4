@@ -61,10 +61,15 @@ namespace API
             //    opt.UseInMemoryDatabase("ParkingReservation"));
             //services.AddDbContext<UserContext>(opt =>
             //    opt.UseInMemoryDatabase("User"));
-            services.AddDbContext<MovieContext>(opt =>
-                opt.UseSqlServer("Data Source=localhost;Initial Catalog=Movie;Integrated Security=True;")
+
+            /* TODO: switch to SQL database once the conenction with sql db is fixed
+            services.AddDbContext<CinemaContext>(opt =>
+                opt.UseSqlServer("Data Source=localhost;Initial Catalog=Cinema;Integrated Security=True;")
                 
                 );
+            */
+            services.AddDbContext<CinemaContext>(opt =>
+                opt.UseInMemoryDatabase("Cinema"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

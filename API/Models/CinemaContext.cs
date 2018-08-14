@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Models
 {
-    public class MovieContext : DbContext
+    public class CinemaContext : DbContext
     {
 
-        public MovieContext(DbContextOptions<MovieContext> options) : base(options)
+        public CinemaContext(DbContextOptions<CinemaContext> options) : base(options)
         {
 
         }
