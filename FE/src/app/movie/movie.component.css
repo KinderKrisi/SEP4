@@ -1,5 +1,6 @@
 .container {
   padding: 1em;
+  background-color: green;
 }
 
 h1 {
@@ -29,6 +30,7 @@ p {
 label{
 background-color: orangered;
 text-align: center;
+font-size: 1.5em;
 width: 15em;
 }
 

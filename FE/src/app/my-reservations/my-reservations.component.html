@@ -1,3 +1,33 @@
-<p>
-  my-reservations works!
-</p>
+<div class="ui-g ui-fluid container ">
+
+  <div class="ui-g-12">
+
+    <h1>Your reservations will be displayed here</h1>
+
+  </div>
+  <div class="ui-g-6 moviereservations">
+    <h1> Movies reserved</h1>
+    <ul>
+      <li *ngFor="let movie of movieReservations">
+        {{movie.name}}
+        <br/> {{movie.length}} minutes
+        <br/> {{movie.language}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="ui-g-6 moviereservations">
+    <h1> Parking reserved</h1>
+    <ul>
+        <li *ngFor="let reservation of parkingReservations">
+          <span> {{reservation.id}}</span>
+          <span> {{reservation.place}}</span>
+          <span> {{reservation.plate}}</span>
+      
+        </li>
+      
+      </ul>
+  </div>
+
+
+</div>

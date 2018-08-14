@@ -1,0 +1,21 @@
+.container{
+background-color: green;
+}
+.theater{
+    background-color: blue;
+    text-align: right;
+}
+.parking{
+    background-color: green;
+}
+.parkingPlace{
+    background-color: purple;
+    text-align: center;
+}
+.info{
+    background-color: orangered;
+}
+
+#entrance{
+    font-weight: bold;
+}
