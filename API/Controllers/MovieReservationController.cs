@@ -20,19 +20,26 @@ namespace API.Controllers
             _context = context;
         }
         [HttpPost]
-        public IActionResult Create(long movieId, long seatId, User user)
+        public IActionResult Create(MovieReservation reservation)
         {
-
-            var seat = (from x in _context.Movies.Find(movieId).Seats
-                where x.Id == seatId select x).FirstOrDefault();
-            if (seat != null)
+            if (reservation != null)
             {
-                seat.User = user;
-                seat.Reserved = true;
-                _context.SaveChanges();
-                return Ok();
+                var movie = _context.Movies.Find(reservation.movieId);
+                var seat = (from x in _context.Movies.Find(reservation.movieId).Seats
+                    where x.Id == reservation.seatId
+                    select x).FirstOrDefault();
+                if (seat != null)
+                {
+                    seat.User = reservation.user;
+                    seat.Reserved = true;
+                    _context.SaveChanges();
+                    return Ok();
+                }
+
+                return NotFound();
             }
-            return NotFound();
+
+            return BadRequest();
         }
 
         [HttpGet("{id}", Name = "GetReservationsForMovie")]

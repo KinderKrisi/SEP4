@@ -52,7 +52,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            return item;
+            return _context.Movies.Include(x=> x.Seats).FirstOrDefault(x => x.Id == id);
         }
 
         [HttpPost]

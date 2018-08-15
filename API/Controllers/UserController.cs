@@ -6,6 +6,7 @@ using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -32,7 +33,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<User>> GetAll()
         {
-            return _context.Users.ToList();
+            return _context.Users.Include(x => x.MovieSeats).ToList();
         }
         
         [HttpGet("{id}", Name = "GetUser")]
@@ -43,7 +44,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            return item;
+            return _context.Users.Include(x => x.MovieSeats).FirstOrDefault(x => x.Id == id);
         }
 
         [HttpPost]
