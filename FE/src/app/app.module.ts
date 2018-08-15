@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { ParkingReservationsComponent } from './parking-reservations/parking-reservations.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 
 //TODO: Remove after server is live
 import { HttpClientModule } from '@angular/common/http';
@@ -16,9 +18,11 @@ import { MovieComponent } from './movie/movie.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { AdminUsersComponent } from './admin-users/admin-users.component';
 import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
+import {CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import {PasswordModule} from 'primeng/password';
     ParkingReservationsComponent,
     RegistrationComponent,
     MovieComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    AdminCreateMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,9 @@ import {PasswordModule} from 'primeng/password';
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
-    PasswordModule
+    PasswordModule,
+    CalendarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
