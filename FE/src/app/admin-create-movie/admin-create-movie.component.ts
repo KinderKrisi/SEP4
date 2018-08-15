@@ -13,21 +13,24 @@ import { MovieService } from '../_services/movie/movie.service';
 })
 export class AdminCreateMovieComponent implements OnInit {
   
-  date: Date;
+ 
   createMovieForm: FormGroup;
   submitted = false;
+  minDateValue = new Date();
+  
 
   movie: Movie;
 
   constructor(private movieService: MovieService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.minDateValue.setDate(this.minDateValue.getDate() + 1);
     this.createMovieForm = this.formBuilder.group({
       name: [''],
-      length: [''],
-      language: [''],
-      startTime: Date,
-      price: ['']
+      length: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]],
+      language: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      startTime: [Date] ,
+      price: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]]
     });
   }
 
@@ -44,7 +47,7 @@ export class AdminCreateMovieComponent implements OnInit {
     if (this.createMovieForm.invalid) {
       return;
     }
-    console.log("startTime", this.createMovieForm.value.startTime())
+    console.log("startTime", this.createMovieForm.value.startTime());
 
     
     this.movie = {
