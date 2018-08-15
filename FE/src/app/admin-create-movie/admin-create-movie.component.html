@@ -1,0 +1,49 @@
+<div class="container ui-g ui-fluid">
+  <div class="ui-g-6 ui-inputgroup ">
+    <form [formGroup]="createMovieForm" (ngSubmit)="onSubmit()">
+
+      <div class="ui-inputgroup ui-g-12">
+        <input formControlName="name" pInputText placeholder="Movie name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="ui-inputgroup ui-g-12">
+        <input formControlName="length" pInputText placeholder="Movie length" [ngClass]="{ 'is-invalid': submitted && f.length.errors }">
+        <div *ngIf="submitted && f.length.errors" class="invalid-feedback">
+          <div *ngIf="f.length.errors.required">Length is required</div>
+        </div>
+      </div>
+      
+
+      <div class="ui-inputgroup ui-g-12">
+          <input formControlName="language" pInputText placeholder="Movie language" [ngClass]="{ 'is-invalid': submitted && f.language.errors }">
+          <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
+            <div *ngIf="f.language.errors.required">Language is required</div>
+          </div>
+        </div>
+
+        <div class="ui-inputgroup ui-g-12">
+            <input formControlName="startTime" pInputText placeholder="Movie begining" [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }">
+            <div *ngIf="submitted && f.startTime.errors" class="invalid-feedback">
+              <div *ngIf="f.startTime.errors.required">Begining is required</div>
+            </div>
+          </div>
+
+          <p-calendar formControllName="startDate"  ></p-calendar>
+
+        <div class="ui-inputgroup ui-g-12">
+            <input formControlName="price" pInputText placeholder="Movie price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
+            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+              <div *ngIf="f.price.errors.required">Price is required</div>
+            </div>
+          </div>
+
+
+      <div class="ui-inputgroup ui-g-12">
+        <button pButton type="button" class="ui-button-raised ui-button-rounded" (click)="onSubmit($event)">Create</button>
+      </div>
+
+    </form>
+  </div>
+</div>
