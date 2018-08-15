@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using API.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -51,7 +52,6 @@ namespace API.Controllers
         [HttpPost("token")]
         public IActionResult Token()
         {
-            //string tokenString = "test";
             var header = Request.Headers["Authorization"];
             if (header.ToString().StartsWith("Basic"))
             {

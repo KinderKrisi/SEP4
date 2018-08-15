@@ -21,17 +21,19 @@ namespace API.Controllers
         {
             _context = context;
 
-            if (_context.Movies.Count() == 0)
+            if (!_context.Movies.Any())
             {
-                _context.Movies.Add(new Movie {Name = "Henry Peter", Length = 165, Language = "english", StartTime = DateTime.Now, Price = 150, Seats = new List<MovieSeat>()
+
+                var movie = new Movie()
                 {
-                    new MovieSeat()
-                    {
-                        Reserved = true,
-                        Row = 1,
-                        SeatNumber = 1,
-                    }
-                }});
+                    Name = "Henry Peter",
+                    Length = 165,
+                    Language = "english",
+                    StartTime = DateTime.Now,
+                    Price = 150,
+                    Seats = CreateSeats()
+                };
+                _context.Movies.Add(movie);
                 _context.SaveChanges();
             }
         }
@@ -54,12 +56,43 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Movie movie)
+        public IActionResult Create(Movie movieFe)
         {
+            var movie = CreateMovie(movieFe);
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetMovie", new Movie { Id = movie.Id }, movie);
+        }
+
+        private Movie CreateMovie(Movie movieFe)
+        {
+            var movie = new Movie()
+            {
+                Name = movieFe.Name,
+                Language = movieFe.Language,
+                Length = movieFe.Length,
+                Price = movieFe.Price,
+                Seats = CreateSeats(),
+                StartTime = movieFe.StartTime
+            };
+
+            return movie;
+        }
+
+        private List<MovieSeat> CreateSeats()
+        {
+            var seats = new List<MovieSeat>();
+
+            for (int row = 1; row <= 5; row++)
+            {
+                for (int seat = 1; seat <= 4; seat++)
+                {
+                    seats.Add(new MovieSeat() { Reserved = false, Row = row, SeatNumber = seat });
+                }
+            }
+
+            return seats;
         }
 
         [HttpPut("{id}")]

@@ -32,7 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
-
+            */
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -47,7 +47,7 @@ namespace API
                 };
             });
 
-            */
+            
             services.AddCors();
 
             services.AddMvc().AddJsonOptions(options =>
@@ -85,9 +85,9 @@ namespace API
                 app.UseHsts();
             }
             /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
-
-            app.UseAuthentication();
             */
+            app.UseAuthentication();
+           
 
             //Enabling cors for every header and method coming from localhost:42000
             app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
