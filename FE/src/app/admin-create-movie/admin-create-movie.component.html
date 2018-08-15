@@ -23,15 +23,11 @@
           </div>
         </div>
 
-        <div class="ui-inputgroup ui-g-12">
-            <input formControlName="startTime" pInputText placeholder="Movie begining" [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }">
-            <div *ngIf="submitted && f.startTime.errors" class="invalid-feedback">
-              <div *ngIf="f.startTime.errors.required">Begining is required</div>
-            </div>
+        <div class="ui-g-12 ui-md-4">
+          <p-calendar formControllName="startTime" 
+          [showTime] = "true" 
+          [hourFormat] = "24" [dataType] = "date"></p-calendar>
           </div>
-
-          <p-calendar formControllName="startDate"  ></p-calendar>
-
         <div class="ui-inputgroup ui-g-12">
             <input formControlName="price" pInputText placeholder="Movie price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
             <div *ngIf="submitted && f.price.errors" class="invalid-feedback">

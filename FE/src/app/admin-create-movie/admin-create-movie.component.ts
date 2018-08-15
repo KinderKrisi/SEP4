@@ -23,12 +23,11 @@ export class AdminCreateMovieComponent implements OnInit {
 
   ngOnInit() {
     this.createMovieForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      length: ['', Validators.required],
-      language: ['', Validators.required],
-      startDate: ['', Validators.required],
-      startTime: ['', Validators.required],
-      price: ['', Validators.required]
+      name: [''],
+      length: [''],
+      language: [''],
+      startTime: Date,
+      price: ['']
     });
   }
 
@@ -45,12 +44,15 @@ export class AdminCreateMovieComponent implements OnInit {
     if (this.createMovieForm.invalid) {
       return;
     }
+    console.log("startTime", this.createMovieForm.value.startTime())
+
+    
     this.movie = {
-      'name': this.createMovieForm.get('name').value,
-      "length": this.createMovieForm.get('length').value,
-      'language': this.createMovieForm.get('language').value,
-      'startTime': this.createMovieForm.get('startTime').value,
-      'price': this.createMovieForm.get('price').value
+      'name': this.createMovieForm.value.name,
+      "length": this.createMovieForm.value.length,
+      'language': this.createMovieForm.value.language,
+      'startTime': this.createMovieForm.value.startTime(),
+      'price': this.createMovieForm.value.price
       }
     console.log('movie created ', this.movie);
     this.createUser(this.movie);
