@@ -47,8 +47,18 @@ namespace API
                 };
             });
 
-            
-            services.AddCors();
+
+            // Add "Default" CORS policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -90,7 +100,7 @@ namespace API
            
 
             //Enabling cors for every header and method coming from localhost:42000
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseHttpsRedirection();
             app.UseMvc();

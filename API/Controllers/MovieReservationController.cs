@@ -24,10 +24,12 @@ namespace API.Controllers
         {
             if (reservation != null)
             {
-                var movie = _context.Movies.Find(reservation.movieId);
-                var seat = (from x in _context.Movies.Find(reservation.movieId).Seats
-                    where x.Id == reservation.seatId
-                    select x).FirstOrDefault();
+                var movie = _context.Movies.Include(x => x.Seats).ThenInclude(x => x.User).FirstOrDefault(x => x.Id == reservation.movieId);
+                var seat = movie.Seats.FirstOrDefault(x => x.Id == reservation.seatId);
+
+                //var seat = (from x in _context.Movies.Find(reservation.movieId).Seats
+                //    where x.Id == reservation.seatId
+                //    select x).FirstOrDefault();
                 if (seat != null)
                 {
                     seat.User = reservation.user;
