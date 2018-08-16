@@ -33,7 +33,17 @@ namespace API.Controllers
                     Price = 150,
                     Seats = CreateSeats()
                 };
+                var movie2 = new Movie()
+                {
+                    Name = "Henry Peter2",
+                    Length = 165,
+                    Language = "english",
+                    StartTime = DateTime.Now,
+                    Price = 150,
+                    Seats = CreateSeats()
+                };
                 _context.Movies.Add(movie);
+                _context.Movies.Add(movie2);
                 _context.SaveChanges();
             }
         }

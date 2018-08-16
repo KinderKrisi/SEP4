@@ -22,10 +22,13 @@ li {
   background-color: orangered;
   color: black;
 }
+li:hover{
+  background-color:red;
+  cursor: pointer;
+}
 
 p {
   text-align: center;
-  background-color: white;
 }
 label{
 background-color: orangered;
@@ -39,6 +42,14 @@ width: 15em;
   padding: 0;
   padding-left: 1em;
   background-color: orangered;
+}
+.seat{
+  position: relative;
+  background-color:white;
+}
+.seat:hover{
+  cursor: pointer;
+  background-color: aliceblue;
 }
 .bookSeating{
     padding: 0;

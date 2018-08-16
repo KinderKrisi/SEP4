@@ -26,7 +26,7 @@ export class AdminCreateMovieComponent implements OnInit {
   ngOnInit() {
     this.minDateValue.setDate(this.minDateValue.getDate() + 1);
     this.createMovieForm = this.formBuilder.group({
-      name: [''],
+      name: ['', Validators.required],
       length: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]],
       language: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
       startTime: [Date] ,

@@ -2,7 +2,8 @@
   <div class="ui-g-12">
     <h1>List of upcoming movies</h1>
   </div>
-  <div class="ui-g-12">
+
+  <div class="ui-g-12 ">
     <ul *ngFor="let movie of movies">
       <li>
         {{movie.name}}
@@ -11,7 +12,25 @@
       </li>
     </ul>
   </div>
+
   <div class="movietheater ui-g-4">
+    <div class="ui-g-12 seatsRow">
+      <div class="ui-g-2 seat">
+        <p>1</p>
+      </div>
+      <div class="ui-g-2">
+        <p>2</p>
+      </div>
+      <div class="ui-g-3">
+        <p>3</p>
+      </div>
+      <div class="ui-g-2">
+        <p>4</p>
+      </div>
+      <div class="ui-g-2">
+        <p>5</p>
+      </div>
+    </div>
     <div class="ui-g-12 seatsRow">
       <div class="ui-g-2">
         <p>1</p>
@@ -36,7 +55,7 @@
       <div class="ui-g-2">
         <p>2</p>
       </div>
-      <div class="ui-g-2">
+      <div class="ui-g-3">
         <p>3</p>
       </div>
       <div class="ui-g-2">
@@ -53,24 +72,7 @@
       <div class="ui-g-2">
         <p>2</p>
       </div>
-      <div class="ui-g-2">
-        <p>3</p>
-      </div>
-      <div class="ui-g-2">
-        <p>4</p>
-      </div>
-      <div class="ui-g-2">
-        <p>5</p>
-      </div>
-    </div>
-    <div class="ui-g-12 seatsRow">
-      <div class="ui-g-2">
-        <p>1</p>
-      </div>
-      <div class="ui-g-2">
-        <p>2</p>
-      </div>
-      <div class="ui-g-2">
+      <div class="ui-g-3">
         <p>3</p>
       </div>
       <div class="ui-g-2">
@@ -101,7 +103,8 @@
       <span class="ui-inputgroup-addon">DKK</span>
     </div>
     <div class="ui-g-5">
-      <button pButton type="button" class="ui-button-raised ui-button-rounded"> Complete booking</button>
+      <button pButton type="button" class="ui-button-raised ui-button-rounded" onclick="changeStatus"> Complete booking</button>
     </div>
   </div>
 </div>
+

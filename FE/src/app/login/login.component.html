@@ -15,8 +15,8 @@
         <input formControlName="password" type="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
         />
       </div>
-      <div class="ui-g-6">
-          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Register" (click)="onSubmit($event)"></button>
+      <div class="ui-g-2">
+          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="login" (click)="onSubmit($event)"></button>
         </div>
     </form>
   </div>

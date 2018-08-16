@@ -1,18 +1,18 @@
 <div class="container ui-g ui-fluid">
-  <div class="ui-g-6 ui-inputgroup ">
+  <div class="ui-g-8 ui-inputgroup ">
     <form [formGroup]="createMovieForm" (ngSubmit)="onSubmit()">
 
       <div class="ui-inputgroup ui-g-12">
         <input formControlName="name" pInputText placeholder="Movie name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">Name of the movie is required</div>
+          <div class="errorMessage" *ngIf="f.name.errors.required">Name of the movie is required</div>
         </div>
       </div>
       <div class="ui-inputgroup ui-g-12">
         <input formControlName="length" pInputText placeholder="Movie length" [ngClass]="{ 'is-invalid': submitted && f.length.errors }">
         <div *ngIf="submitted && f.length.errors" class="invalid-feedback">
-          <div *ngIf="f.length.errors.required">Length of the movie is required</div>
-          <div *ngIf="f.length.errors">Length of the movie must be a number starting with a number(1-9)</div>
+          <div class="errorMessage" *ngIf="f.length.errors.required">Length of the movie is required</div>
+          <div class="errorMessage" *ngIf="f.length.errors">Length of the movie must be a number starting with a number(1-9)</div>
         </div>
       </div>
 
@@ -20,8 +20,8 @@
       <div class="ui-inputgroup ui-g-12">
         <input formControlName="language" pInputText placeholder="Movie language" [ngClass]="{ 'is-invalid': submitted && f.language.errors }">
         <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
-          <div *ngIf="f.language.errors.required">Language of the movie is required</div>
-          <div *ngIf="f.language.errors">Language of the movie can only contain letters</div>
+          <div class="errorMessage" *ngIf="f.language.errors.required">Language of the movie is required</div>
+          <div class="errorMessage" *ngIf="f.language.errors">Language of the movie can only contain letters</div>
         </div>
       </div>
 
@@ -29,21 +29,21 @@
       <div class="ui-inputgroup ui-g-12">
         <input formControlName="price" pInputText placeholder="Movie price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
         <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-          <div *ngIf="f.price.errors.required">Price for a ticket is required</div>
-          <div *ngIf="f.price.errors">Price for a ticket must be a number starting with a number(1-9)</div>
+          <div class="errorMessage" *ngIf="f.price.errors.required">Price for a ticket is required</div>
+          <div class="errorMessage" *ngIf="f.price.errors">Price for a ticket must be a number starting with a number(1-9)</div>
         </div>
       </div>
 
       <div class="ui-inpputgroup ui-g-6 ">
         <p-calendar formControllName="startTime" placeholder="Select date and time" [showTime]="true" [hourFormat]="24" [minDate]="minDateValue"
-          [dataType]="date" [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }"></p-calendar>
-        </div>
+          [dataType]="date"> </p-calendar>
+      </div>
 
 
-        <div class="ui-inputgroup ui-g-12">
-          <button pButton type="button" class="ui-button-raised ui-button-rounded" (click)="onSubmit($event)">Create</button>
-        </div>
+      <div class="ui-inputgroup ui-g-12">
+        <button pButton type="button" class="ui-button-raised ui-button-rounded" (click)="onSubmit($event)">Save show </button>
+      </div>
 
     </form>
-    </div>
   </div>
+</div>
