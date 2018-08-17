@@ -22,12 +22,6 @@ namespace API.Controllers
         public UserController(CinemaContext context)
         {
             _context = context;
-
-            if (_context.Users.Count() == 0)
-            {
-                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin",FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
-                _context.SaveChanges();
-            }
         }
 
         [HttpGet]

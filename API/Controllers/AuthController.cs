@@ -9,6 +9,7 @@ using API.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Controllers
@@ -22,12 +23,6 @@ namespace API.Controllers
         public AuthController(CinemaContext context)
         {
             _context = context;
-
-            if (_context.Users.Count() == 0)
-            {
-                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin", FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
-                _context.SaveChanges();
-            }
         }
         /*
         [HttpGet(Name = "login")]
@@ -79,6 +74,32 @@ namespace API.Controllers
             }
 
             return BadRequest("wrong request");
+        }
+        [HttpGet(Name = "Login")]
+        public ActionResult<User> Login(string email, string password)
+        {
+            var user = _context.Users.Include(x => x.MovieSeats).FirstOrDefault(x => x.Email == email);
+            if (user == null)
+            {
+                return NotFound("user cannot be found");
+            }
+
+            if (user.Password == password)
+            {
+                var _user = new User()
+                {
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    MovieSeats = user.MovieSeats,
+                    Id = user.Id,
+                    LastName = user.LastName,
+                    Role = user.Role,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return Ok(_user);
+            }
+
+            return BadRequest();
         }
     }
 }

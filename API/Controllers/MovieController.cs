@@ -46,6 +46,25 @@ namespace API.Controllers
                 _context.Movies.Add(movie2);
                 _context.SaveChanges();
             }
+            if (!_context.Users.Any())
+            {
+                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin", FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
+                _context.SaveChanges();
+            }
+
+            if (!_context.Parking.Any())
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    _context.Parking.Add(new ParkingPlace()
+                        {Reserved = false}
+                    );
+                }
+
+                _context.SaveChanges();
+            }
+
+
         }
 
         [HttpGet]
@@ -73,36 +92,6 @@ namespace API.Controllers
             _context.SaveChanges();
 
             return CreatedAtRoute("GetMovie", new Movie { Id = movie.Id }, movie);
-        }
-
-        private Movie CreateMovie(Movie movieFe)
-        {
-            var movie = new Movie()
-            {
-                Name = movieFe.Name,
-                Language = movieFe.Language,
-                Length = movieFe.Length,
-                Price = movieFe.Price,
-                Seats = CreateSeats(),
-                StartTime = movieFe.StartTime
-            };
-
-            return movie;
-        }
-
-        private List<MovieSeat> CreateSeats()
-        {
-            var seats = new List<MovieSeat>();
-
-            for (int row = 1; row <= 5; row++)
-            {
-                for (int seat = 1; seat <= 4; seat++)
-                {
-                    seats.Add(new MovieSeat() { Reserved = false, Row = row, SeatNumber = seat });
-                }
-            }
-
-            return seats;
         }
 
         [HttpPut("{id}")]
@@ -141,6 +130,35 @@ namespace API.Controllers
             _context.Movies.Update(_movie);
             _context.SaveChanges();
             return NoContent();
+        }
+        private Movie CreateMovie(Movie movieFe)
+        {
+            var movie = new Movie()
+            {
+                Name = movieFe.Name,
+                Language = movieFe.Language,
+                Length = movieFe.Length,
+                Price = movieFe.Price,
+                Seats = CreateSeats(),
+                StartTime = movieFe.StartTime
+            };
+
+            return movie;
+        }
+
+        private List<MovieSeat> CreateSeats()
+        {
+            var seats = new List<MovieSeat>();
+
+            for (int row = 1; row <= 5; row++)
+            {
+                for (int seat = 1; seat <= 4; seat++)
+                {
+                    seats.Add(new MovieSeat() { Reserved = false, Row = row, SeatNumber = seat });
+                }
+            }
+
+            return seats;
         }
     }
 }

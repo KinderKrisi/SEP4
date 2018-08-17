@@ -7,6 +7,8 @@ import { User } from '../../_models/user';
 
 import { handleError } from '../../_helper/handler';
 import { Observable } from 'rxjs';
+import { Login } from '../../_models/login';
+import { DataService } from '../data/data.service';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -19,7 +21,7 @@ const httpOptions = {
 
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dataService: DataService) { }
 
   private userUrl = '/api/user';
 
@@ -41,6 +43,14 @@ export class UserService {
     return this.http.put<User>(`${this.userUrl}/${user.id}`, user).pipe(
       tap(user => console.log('user has been changed', user)),
       catchError(handleError('updateUser', user))
+    )
+  }
+  login(email: String, password: String): Observable<User> {
+    return this.http.get<User>("api/auth", {params: {
+      email: `${email}`,
+      password: `${password}`
+    }}).pipe(
+      tap(user => this.dataService.setUser(user))
     )
   }
   

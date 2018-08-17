@@ -7,8 +7,13 @@ namespace API.Models
 {
     public class MovieReservation
     {
-        public long movieId { get; set; }
-        public long seatId { get; set; }
-        public User user { get; set; }
+        public long MovieId { get; set; }
+        public long SeatId { get; set; }
+        public User User { get; set; }
+        public bool WantParking { get; set; }
+        public DateTime StarDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public List<ParkingPlace> ParkingPlaces { get; set; }
     }
 }

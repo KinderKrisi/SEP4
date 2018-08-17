@@ -15,13 +15,15 @@ import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-mov
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { MovieComponent } from './movie/movie.component';
-
+import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
 import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegistrationComponent,
     MovieComponent,
     AdminUsersComponent,
-    AdminCreateMovieComponent
+    AdminCreateMovieComponent,
+    MovieReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ButtonModule,
     PasswordModule,
     CalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MultiSelectModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

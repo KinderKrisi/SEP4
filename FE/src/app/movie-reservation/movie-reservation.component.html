@@ -1,0 +1,12 @@
+<div class="container ui-g ui-fluid">
+    <div class="login ui-g-4">
+      <form [formGroup]="ReservationForm" (ngSubmit)="onSubmit()">
+          <p-multiSelect [options]="seats" formControlName="selectedSeats"></p-multiSelect>
+          <input type="checkbox" foemControllName="parking" (change)="changeCheckbox($event)">
+          <div class="ui-g-4">
+            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Reserve" (click)="onSubmit($event)"></button>
+          </div>
+      </form>
+    </div>
+  </div>
+  
