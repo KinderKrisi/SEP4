@@ -27,7 +27,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<User>> GetAll()
         {
-            return _context.Users.Include(x => x.MovieSeats).ToList();
+            return Ok(_context.Users.Include(x => x.MovieSeats).ToList());
         }
         
         [HttpGet("{id}", Name = "GetUser")]
@@ -38,7 +38,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            return _context.Users.Include(x => x.MovieSeats).FirstOrDefault(x => x.Id == id);
+            return Ok(_context.Users.Include(x => x.MovieSeats).FirstOrDefault(x => x.Id == id));
         }
 
         [HttpPost]

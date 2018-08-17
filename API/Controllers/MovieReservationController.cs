@@ -36,6 +36,7 @@ namespace API.Controllers
                     seat.Reserved = true;
                     _context.SaveChanges();
 
+                    //TODO: fix sending multiple request fro parking reservation from one user -> on Front End
                     if (reservation.WantParking)
                     {
                         var parking = _context.Parking.Include(x => x.User).FirstOrDefault(x => x.Reserved == false);
@@ -78,7 +79,7 @@ namespace API.Controllers
                     return Ok(seats);
                 }
 
-                return NoContent();
+                return NotFound("No reservation for a movie");
             }
 
             return BadRequest();

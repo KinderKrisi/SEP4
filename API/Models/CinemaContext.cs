@@ -19,7 +19,6 @@ namespace API.Models
 
         public DbSet<MovieSeat> MovieSeats{get; set;}
         public DbSet<User> Users { get; set; }
-        public DbSet<ParkingReservation> Reservations { get; set; }
         public DbSet<ParkingPlace> Parking { get; set; }
 
     }

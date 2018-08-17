@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Movie } from '../../_models/movie';
 
 import { handleError } from '../../_helper/handler';
+import { DataService } from '../data/data.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,13 +19,15 @@ const httpOptions = {
 export class MovieService {
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private dataService: DataService
+  ) { }
 
     private movieUrl = '/api/movie';
 
     getMovies(): Observable<Movie[]>{
       return this.http.get<Movie[]>(this.movieUrl).pipe(
-        tap(movies => console.log('fetched movies', movies)),
+        tap(movies => this.dataService.setMovies(movies)),
         catchError(handleError('getMovies', []))
       )
     }

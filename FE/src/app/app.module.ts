@@ -24,6 +24,7 @@ import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CheckboxModule} from 'primeng/checkbox';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     MovieComponent,
     AdminUsersComponent,
     AdminCreateMovieComponent,
-    MovieReservationComponent
+    MovieReservationComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

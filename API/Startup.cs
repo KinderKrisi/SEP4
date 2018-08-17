@@ -31,7 +31,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
+            /* TODO: JWT authentication is ready implement it into the controllers once passing headers with authorization is fixed
             */
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -65,12 +65,6 @@ namespace API
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
             });
-
-
-            //services.AddDbContext<ParkingReservationContext>(opt =>
-            //    opt.UseInMemoryDatabase("ParkingReservation"));
-            //services.AddDbContext<UserContext>(opt =>
-            //    opt.UseInMemoryDatabase("User"));
 
             /* TODO: switch to SQL database once the conenction with sql db is fixed
             services.AddDbContext<CinemaContext>(opt =>
