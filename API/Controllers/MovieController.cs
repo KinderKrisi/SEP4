@@ -16,7 +16,7 @@ namespace API.Controllers
 
         private readonly CinemaContext _context;
         
-
+        // TODO: Move db initialization from the constructor of this controller with config file or separate function
         public MovieController(CinemaContext context)
         {
             _context = context;
@@ -70,7 +70,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<Movie>> GetAll()
         {
-            return _context.Movies.Include(x => x.Seats).ToList();
+            return Ok(_context.Movies.Include(x => x.Seats).ToList());
         }
 
         [HttpGet("{id}", Name = "GetMovie")]
@@ -79,9 +79,9 @@ namespace API.Controllers
             var item = _context.Movies.Find(id);
             if (item == null)
             {
-                return NotFound();
+                return NotFound("item with this id was not found");
             }
-            return _context.Movies.Include(x=> x.Seats).FirstOrDefault(x => x.Id == id);
+            return Ok(_context.Movies.Include(x=> x.Seats).FirstOrDefault(x => x.Id == id));
         }
 
         [HttpPost]
@@ -131,6 +131,7 @@ namespace API.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+        
         private Movie CreateMovie(Movie movieFe)
         {
             var movie = new Movie()

@@ -44,6 +44,7 @@ namespace API.Controllers
             return false;
         }
         
+        // TODO: JWT token not working - cannot append header with authorization fix this isue once header is succesfully passed
         [HttpPost("token")]
         public IActionResult Token()
         {
@@ -99,7 +100,7 @@ namespace API.Controllers
                 return Ok(_user);
             }
 
-            return BadRequest();
+            return BadRequest("wrong request");
         }
     }
 }
