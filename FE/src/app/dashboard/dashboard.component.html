@@ -1,10 +1,18 @@
 <nav>
-  <a routerLink="/registration">Registration</a>
-  <a routerLink="/login">Log in</a>
-  <a routerLink="/movies"> Movie reservation</a>
-  <a routerLink="/parkingReservations"> Parking reservations </a>
-  <a routerLink="/myReservations">My Reservations</a>
-  <a routerLink="/adminUsers">Admin Users</a>
-  <a routerLink="/adminCreateMovie">Create movie</a>
-  <a routerLink="/movieReservation">Reserve movie</a>
+
+  <div *ngIf="dataService.logedin">
+    <div *ngIf="user.role == 'admin'">
+      <a routerLink="/adminUsers">Admin Users</a>
+      <a routerLink="/adminCreateMovie">Create movie</a>
+    </div>
+
+    <div *ngIf="user.role == 'user'">
+      <a routerLink="/movies"> Movie reservation</a>
+      <a routerLink="/parkingReservations"> Parking reservations </a>
+      <a routerLink="/myReservations">My Reservations</a>
+      <a routerLink="/movieReservation">Reserve movie</a>
+    </div>
+
+  </div>
+
 </nav>

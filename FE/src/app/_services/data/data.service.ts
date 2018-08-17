@@ -10,11 +10,14 @@ export class DataService {
   public user: User;
   public movie: Movie;
   public movies: Movie[];
-
-  constructor() { }
+  public logedin: boolean;
+  constructor() { 
+    this.logedin = false;
+  }
 
   setUser(user: User){
     this.user = user;
+    this.logedin = true;
   }
   getUser(){
     return this.user;

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { User } from './_models/user';
+import { DataService } from './_services/data/data.service';
+import { FormGroup } from '../../node_modules/@angular/forms';
+import { Router } from '../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Parking reservation system';
+  title = 'The cinema';
+  
+  user: User;
+
+  submitted = false;
+
+  constructor(private dataService: DataService,
+  public Router: Router) { }
+
+  ngOnInit() {    
+      this.user = this.dataService.getUser();
+  }
+
+
+  onSubmit() {
+    this.dataService.logedin = false;
+    this.Router.navigate(['/dashboard'])
+  }
+  
 }
+
+

@@ -1,6 +1,13 @@
 <h1>{{title}}</h1>
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
+
+  <div *ngIf="!dataService.logedin">
+    <a routerLink="/registration">Registration</a>
+    <a routerLink="/login">Log in</a>
+  </div>
+  <button *ngIf="dataService.logedin" (click)="onSubmit($event)"> Log out</button>
+
 </nav>
 
 <router-outlet></router-outlet>

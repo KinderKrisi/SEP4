@@ -10,10 +10,14 @@ import { User } from '../_models/user';
 export class DashboardComponent implements OnInit {
 
   user: User;
-  
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    
+      console.log("loged in", this.dataService.logedin);
+    
+      this.user = this.dataService.getUser();
   }
 
 }
