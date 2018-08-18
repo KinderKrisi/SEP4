@@ -1,6 +1,7 @@
 <div class="container ui-g ui-fluid">
   <div class="ui-g-8 ui-inputgroup ">
     <form [formGroup]="createMovieForm" (ngSubmit)="onSubmit()">
+      <p-toast position="top-right"></p-toast>
 
       <div class="ui-inputgroup ui-g-12">
         <input formControlName="name" pInputText placeholder="Movie name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">

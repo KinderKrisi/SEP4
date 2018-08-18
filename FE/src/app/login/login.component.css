@@ -1,3 +1,8 @@
 .container{
 background-color: green;    
 }
+.errorMessage{
+    color: red;
+    padding-left: 1em;
+    font-weight: bold;
+}

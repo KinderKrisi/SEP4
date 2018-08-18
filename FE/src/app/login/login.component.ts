@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../_services/authentication/authentication.service';
 import { UserService } from '../_services/user/user.service';
-import { Router } from '@angular/router';
 import { DataService } from '../_services/data/data.service';
 
 
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
   private formBuilder: FormBuilder,
   private userService: UserService,
   private dataService: DataService,
-  public Router: Router
   ) { }
 
   ngOnInit() {
