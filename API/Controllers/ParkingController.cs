@@ -20,10 +20,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Movie>> GetOccupied()
+        public ActionResult<List<ParkingPlace>> GetAllParking()
         {
-            var occupied = (from parkingPlace in _context.Parking where parkingPlace.Reserved select parkingPlace).ToList();
-            return Ok(occupied);
+            return Ok(_context.Parking.Include(x => x.User).ToList());
         }
 
         [HttpPut("{id}")]

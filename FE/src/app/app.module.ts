@@ -26,6 +26,7 @@ import { CheckboxModule} from 'primeng/checkbox';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AdminParkingComponent } from './admin-parking/admin-parking.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MessageService } from 'primeng/api';
     AdminUsersComponent,
     AdminCreateMovieComponent,
     MovieReservationComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    AdminParkingComponent
   ],
   imports: [
     BrowserModule,
