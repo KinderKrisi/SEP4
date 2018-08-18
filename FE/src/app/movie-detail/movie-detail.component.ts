@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../_models/movie';
 import { Router,ActivatedRoute } from '@angular/router';
 import { DataService } from '../_services/data/data.service';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { MovieSeat } from '../_models/movieSeat';
 
 

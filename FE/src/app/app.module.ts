@@ -18,13 +18,15 @@ import { MovieComponent } from './movie/movie.component';
 import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {PasswordModule} from 'primeng/password';
-import {CalendarModule} from 'primeng/calendar';
+import { ButtonModule} from 'primeng/button';
+import { PasswordModule} from 'primeng/password';
+import { CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {CheckboxModule} from 'primeng/checkbox';
+import { MultiSelectModule} from 'primeng/multiselect';
+import { CheckboxModule} from 'primeng/checkbox';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -52,9 +54,10 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     CalendarModule,
     BrowserAnimationsModule,
     MultiSelectModule,
-    CheckboxModule
+    CheckboxModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

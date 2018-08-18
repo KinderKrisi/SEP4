@@ -34,7 +34,7 @@ export class AdminCreateMovieComponent implements OnInit {
     });
   }
 
-  createUser(movie: Movie): void {
+  createMovie(movie: Movie): void {
     this.movieService.createMovie(this.movie).subscribe();
   }
   // convenience getter for easy access to form fields
@@ -57,7 +57,7 @@ export class AdminCreateMovieComponent implements OnInit {
       'startTime': this.createMovieForm.value.startTime(),
       'price': this.createMovieForm.value.price
       }
-    console.log('movie created ', this.movie);
-    this.createUser(this.movie);
+    console.log('movie create request ', this.movie);
+    this.createMovie(this.movie);
   }
 }

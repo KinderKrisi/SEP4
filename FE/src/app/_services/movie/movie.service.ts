@@ -8,6 +8,7 @@ import { Movie } from '../../_models/movie';
 
 import { handleError } from '../../_helper/handler';
 import { DataService } from '../data/data.service';
+import { ToastService } from '../toast/toast.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +21,8 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
-    private dataService: DataService
+    private dataService: DataService,
+    private toastService: ToastService
   ) { }
 
     private movieUrl = '/api/movie';
@@ -39,8 +41,8 @@ export class MovieService {
     }
     createMovie(movie: Movie): Observable<Movie>{
       return this.http.post<Movie>(this.movieUrl, movie).pipe(
-        tap(movie => console.log('created movie', movie)),
-        catchError(handleError('createMovie', movie))
+        tap(movie => this.createdMovieToast(movie)),
+        catchError(this.errorMovieToast('createMovie', movie))
       )
     }
     updateMovie(id, movie: Movie): Observable<Movie>{
@@ -49,4 +51,14 @@ export class MovieService {
         catchError(handleError('updateMovie', movie))
       )
     }
+
+    createdMovieToast(movie: Movie){
+      this.toastService.movieCreated();
+    }
+    errorMovieToast(errorMessage: string, movie: Movie){
+      this.toastService.movieNotCreated();
+      return handleError(errorMessage, movie);
+    }
+
+
   }

@@ -9,7 +9,10 @@ import { handleError } from '../../_helper/handler';
 import { Observable } from 'rxjs';
 import { Login } from '../../_models/login';
 import { DataService } from '../data/data.service';
-import { Router } from '../../../../node_modules/@angular/router';
+import { ToastService } from '../toast/toast.service';
+import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/api';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -22,7 +25,12 @@ const httpOptions = {
 
 export class UserService {
 
-  constructor(private http: HttpClient, private dataService: DataService, public Router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private dataService: DataService,
+    public router: Router,
+    private toast: ToastService
+  ) { }
 
   private userUrl = '/api/user';
 
@@ -35,8 +43,8 @@ export class UserService {
 
   registration(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user).pipe(
-      tap(registration => console.log('registred user', registration)),
-      catchError(handleError('registration', user))
+      tap(registration => this.succesfullRegistration( registration)),
+      catchError(this.failedRegistration('registration', user))
     )
   }
 
@@ -53,10 +61,26 @@ export class UserService {
         password: `${password}`
       }
     }).pipe(
-      tap(user => this.dataService.setUser(user), // TODO add routing to dashboard
-        catchError(handleError('login failed', null))
-      ))
+      tap(user => this.loginUser(user)),
+      catchError(this.errorToastLogin("login failed", null))
+    )
   }
 
+  loginUser(user: User) {
+    this.dataService.setUser(user);
+    this.router.navigate(["dashboard"]);
+  }
+  errorToastLogin(errorMessage: string, user: User) { // TODO why error toast when success
+    this.toast.errorLogin();
+    return handleError(errorMessage, user);
+  }
+
+  succesfullRegistration(user: User) {
+    this.loginUser(user);
+  }
+  failedRegistration(errorMessage: string, user: User) {
+    this.toast.registrationFailed();
+    return handleError(errorMessage, user);
+  }
 
 }
