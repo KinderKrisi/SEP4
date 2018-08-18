@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ParkingReservationService } from '../_services/parking-reservation/parking-reservation.service';
-import { ParkingReservation } from '../_models/parkingReservation';
-
-import { MovieReservationService } from '../_services/movie-reservation/movie-reservation.service';
-import { MovieReservation } from '../_models/movieReservation';
+import { ReservationsService } from '../_services/reservations/reservations.service';
+import { DataService } from '../_services/data/data.service';
+import { User } from '../_models/user';
+import { UserReservation } from '../_models/userReservation';
+import { Movie } from '../_models/movie';
+import { ParkingPlace } from '../_models/parkingPlace';
+import { MovieSeat } from '../_models/movieSeat';
 
 
 @Component({
@@ -14,19 +15,33 @@ import { MovieReservation } from '../_models/movieReservation';
 })
 export class MyReservationsComponent implements OnInit {
 
-  constructor(private parkingreservationservice: ParkingReservationService, private movieReservationService: MovieReservationService) { }
+  constructor(private reservationsService: ReservationsService, private dataService: DataService) { }
 
-  parkingReservations: ParkingReservation[];
-  movieReservations: MovieReservation[];
+  userReservations: UserReservation;
+  reservedMovies: Movie[];
+  user: User;
+  reservedParking: ParkingPlace[];
+  reservedSeats: MovieSeat[];
 
   ngOnInit() {
+    this.reservedParking = [];
+    this.reservedSeats = [];
+    this.reservedMovies = [];
+    this.user = this.dataService.getUser();
+    this.getUserReservations(this.user.id);
+    console.log("user service reservation", this.userReservations);
+    this.fillObjects(this.userReservations);
   }
 
-  getReservedMovies(): void{
-    this.movieReservationService.getMovieReservations().subscribe(movieReservations => this.movieReservations = movieReservations);
+  getUserReservations(userId: Number): void{
+    this.reservationsService.getUserReservations(userId).subscribe(
+      x => this.userReservations = x)
   }
-
-  getReservedParking(): void{
-    this.parkingreservationservice.getParkingReservations().subscribe(parkingReservations => this.parkingReservations = parkingReservations);
+  fillObjects(returnedReservations: UserReservation): void{
+    if (this.userReservations){
+    if(this.userReservations.ReservedMovies.length > 0) this.reservedMovies = this.userReservations.ReservedMovies;
+    if(this.userReservations.ReservedParkingPlaces.length >0 )this.reservedParking = this.userReservations.ReservedParkingPlaces;
+    if(this.userReservations.ReservedSeats.length > 0) this.reservedSeats = this.userReservations.ReservedSeats;
+    }
   }
 }

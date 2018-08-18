@@ -17,6 +17,15 @@ namespace API.Models
         [NotMapped]
         public DateTime EndTime => StartTime.AddMinutes(Length);
         //public MovieSeats Seats { get; set; }
+        [NotMapped]
+        public double StartTimeMill => StartTime.ToUniversalTime().Subtract(
+            new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+        ).TotalMilliseconds;
+
+        [NotMapped]
+        public double EndTimeMill => EndTime.ToUniversalTime().Subtract(
+            new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+        ).TotalMilliseconds;
 
         public ICollection<MovieSeat> Seats { get; set; } = new HashSet<MovieSeat>();
         public double Price { get; set; }

@@ -5,9 +5,10 @@ export class Movie {
     name: string;
     length: number;
     language: string;
-    startTime: Date;
-    endTime?: Date;
-    price: number;
+    startTimeMill?: number;
+    startTime? = new Date(this.startTimeMill);
+    endTimeMill?: number;
+    endTime? = new Date(this.endTimeMill);
+    price: Number;
     seats?: MovieSeat[];
-
 }

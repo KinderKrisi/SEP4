@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
-import { ParkingReservationsComponent } from './parking-reservations/parking-reservations.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 
@@ -27,6 +26,7 @@ import { CheckboxModule} from 'primeng/checkbox';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AdminParkingComponent } from './admin-parking/admin-parking.component';
 
 
 @NgModule({
@@ -35,13 +35,13 @@ import { MessageService } from 'primeng/api';
     DashboardComponent,
     LoginComponent,
     MyReservationsComponent,
-    ParkingReservationsComponent,
     RegistrationComponent,
     MovieComponent,
     AdminUsersComponent,
     AdminCreateMovieComponent,
     MovieReservationComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    AdminParkingComponent
   ],
   imports: [
     BrowserModule,

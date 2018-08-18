@@ -36,8 +36,8 @@
       </div>
 
       <div class="ui-inpputgroup ui-g-6 ">
-        <p-calendar formControllName="startTime" placeholder="Select date and time" [showTime]="true" [hourFormat]="24" [minDate]="minDateValue"
-          [dataType]="date"> </p-calendar>
+        <p-calendar formControllName="startTime" placeholder="Select date and time" dateFormat="yy-mm-dd" [showTime]="true" [hourFormat]="24" [minDate]="minDateValue"
+          [dataType]="date" (onSelect)="setDate($event)"> </p-calendar>
       </div>
 
 

@@ -8,7 +8,7 @@
   <div class="ui-g-6 moviereservations">
     <h1> Movies reserved</h1>
     <ul>
-      <li *ngFor="let movie of movieReservations">
+      <li *ngFor="let movie of reservedMovies">
         {{movie.name}}
         <br/> {{movie.length}} minutes
         <br/> {{movie.language}}
@@ -19,7 +19,7 @@
   <div class="ui-g-6 moviereservations">
     <h1> Parking reserved</h1>
     <ul>
-        <li *ngFor="let reservation of parkingReservations">
+        <li *ngFor="let reservation of reservedParking">
           <span> {{reservation.id}}</span>
           <span> {{reservation.place}}</span>
           <span> {{reservation.plate}}</span>
