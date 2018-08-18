@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
-import { ParkingReservationsComponent } from './parking-reservations/parking-reservations.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-movie.component';
 
@@ -33,7 +32,6 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     DashboardComponent,
     LoginComponent,
     MyReservationsComponent,
-    ParkingReservationsComponent,
     RegistrationComponent,
     MovieComponent,
     AdminUsersComponent,

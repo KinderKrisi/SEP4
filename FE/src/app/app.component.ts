@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from './_models/user';
 import { DataService } from './_services/data/data.service';
-import { FormGroup } from '../../node_modules/@angular/forms';
-import { Router } from '../../node_modules/@angular/router';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',

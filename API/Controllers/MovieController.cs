@@ -23,48 +23,8 @@ namespace API.Controllers
 
             if (!_context.Movies.Any())
             {
-
-                var movie = new Movie()
-                {
-                    Name = "Henry Peter",
-                    Length = 165,
-                    Language = "english",
-                    StartTime = DateTime.Now,
-                    Price = 150,
-                    Seats = CreateSeats()
-                };
-                var movie2 = new Movie()
-                {
-                    Name = "Henry Peter2",
-                    Length = 165,
-                    Language = "english",
-                    StartTime = DateTime.Now,
-                    Price = 150,
-                    Seats = CreateSeats()
-                };
-                _context.Movies.Add(movie);
-                _context.Movies.Add(movie2);
-                _context.SaveChanges();
+                fillDatabase();
             }
-            if (!_context.Users.Any())
-            {
-                _context.Users.Add(new User { Email = "mail@m.com", Password = "martin", FirstName = "Martin", LastName = "Krisko", PhoneNumber = "71398977", Role = "admin" });
-                _context.SaveChanges();
-            }
-
-            if (!_context.Parking.Any())
-            {
-                for (int i = 0; i < 30; i++)
-                {
-                    _context.Parking.Add(new ParkingPlace()
-                        {Reserved = false}
-                    );
-                }
-
-                _context.SaveChanges();
-            }
-
-
         }
 
         [HttpGet]
@@ -85,13 +45,14 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Movie movieFe)
+        public IActionResult Create(MovieDTO movieFe)
         {
+            var request = Request;
             var movie = CreateMovie(movieFe);
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetMovie", new Movie { Id = movie.Id }, movie);
+            return CreatedAtRoute("CreateMovie", new Movie { Id = movie.Id }, movie);
         }
 
         [HttpPut("{id}")]
@@ -132,8 +93,9 @@ namespace API.Controllers
             return NoContent();
         }
         
-        private Movie CreateMovie(Movie movieFe)
+        private Movie CreateMovie(MovieDTO movieFe)
         {
+            var startdate = DateTimeOffset.FromUnixTimeMilliseconds(movieFe.StartTimeMill).UtcDateTime;
             var movie = new Movie()
             {
                 Name = movieFe.Name,
@@ -141,7 +103,7 @@ namespace API.Controllers
                 Length = movieFe.Length,
                 Price = movieFe.Price,
                 Seats = CreateSeats(),
-                StartTime = movieFe.StartTime
+                StartTime = startdate
             };
 
             return movie;
@@ -160,6 +122,84 @@ namespace API.Controllers
             }
 
             return seats;
+        }
+
+        private void fillDatabase()
+        {
+            if (!_context.Movies.Any())
+            {
+
+                var movie = new Movie()
+                {
+                    Name = "Henry Peter",
+                    Length = 165,
+                    Language = "english",
+                    StartTime = DateTime.Now,
+                    Price = 150,
+                    Seats = CreateSeats()
+                };
+                var movie2 = new Movie()
+                {
+                    Name = "Henry Peter2",
+                    Length = 165,
+                    Language = "english",
+                    StartTime = DateTime.Now,
+                    Price = 150,
+                    Seats = CreateSeats()
+                };
+                _context.Movies.Add(movie);
+                _context.Movies.Add(movie2);
+                _context.SaveChanges();
+            }
+            if (!_context.Users.Any())
+            {
+                _context.Users.Add(new User { Email = "martin@m.com",
+                    Password = "martin",
+                    FirstName = "Martin",
+                    LastName = "Krisko",
+                    PhoneNumber = "71398977",
+                    Role = "admin" });
+                _context.Users.Add(new User()
+                {
+                    Email = "miroslav@m.com",
+                    Password = "miroslav",
+                    FirstName = "Miroslav",
+                    LastName = "Fratric",
+                    PhoneNumber = "71398977",
+                    Role = "admin"
+                });
+                _context.Users.Add(new User()
+                {
+                    Email = "user1@m.com",
+                    Password = "123456",
+                    FirstName = "User1",
+                    LastName = "LastUser1",
+                    PhoneNumber = "71398977",
+                    Role = "user"
+                });
+                _context.Users.Add(new User()
+                {
+                    Email = "user2@m.com",
+                    Password = "123456",
+                    FirstName = "User2",
+                    LastName = "LastUser2",
+                    PhoneNumber = "71398977",
+                    Role = "user"
+                });
+                _context.SaveChanges();
+            }
+
+            if (!_context.Parking.Any())
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    _context.Parking.Add(new ParkingPlace()
+                        { Reserved = false }
+                    );
+                }
+
+                _context.SaveChanges();
+            }
         }
     }
 }

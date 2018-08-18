@@ -9,7 +9,7 @@ import { handleError } from '../../_helper/handler';
 import { Observable } from 'rxjs';
 import { Login } from '../../_models/login';
 import { DataService } from '../data/data.service';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders(

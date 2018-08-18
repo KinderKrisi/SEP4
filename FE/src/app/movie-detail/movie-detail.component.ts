@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../_models/movie';
 import { Router,ActivatedRoute } from '@angular/router';
 import { DataService } from '../_services/data/data.service';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { MovieSeat } from '../_models/movieSeat';
 
 
@@ -13,7 +13,7 @@ import { MovieSeat } from '../_models/movieSeat';
 })
 export class MovieDetailComponent implements OnInit {
 
-  id: Number;
+  id: number;
   movie: Movie;
   availableSeats: MovieSeat[];
   constructor(private activedRoute: ActivatedRoute, private dataService: DataService, private router: Router) {
@@ -21,7 +21,7 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activedRoute.params.subscribe(params => {this.id = params.id});
-    this.movie = this.dataService.getMovies().find(x => x.Id == this.id);
+    this.movie = this.dataService.getMovies()[this.id -1];
     this.availableSeats = this.movie.seats.filter(x => x.reserved == false);
   }
   onBack(): void{

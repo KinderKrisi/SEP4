@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 import { Movie } from '../_models/movie';
@@ -17,9 +16,12 @@ export class AdminCreateMovieComponent implements OnInit {
   createMovieForm: FormGroup;
   submitted = false;
   minDateValue = new Date();
+  dummyDate = new Date();
   
 
   movie: Movie;
+  startTimeMill: number;
+  startTime = new Date();
 
   constructor(private movieService: MovieService, private formBuilder: FormBuilder) { }
 
@@ -29,7 +31,7 @@ export class AdminCreateMovieComponent implements OnInit {
       name: ['', Validators.required],
       length: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]],
       language: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
-      startTime: [Date] ,
+      startTime: [Date, Validators.required] ,
       price: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]]
     });
   }
@@ -47,17 +49,22 @@ export class AdminCreateMovieComponent implements OnInit {
     if (this.createMovieForm.invalid) {
       return;
     }
-    console.log("startTime", this.createMovieForm.value.startTime());
 
+    console.log("time inside submit form", this.startTimeMill);
     
     this.movie = {
       'name': this.createMovieForm.value.name,
       "length": this.createMovieForm.value.length,
       'language': this.createMovieForm.value.language,
-      'startTime': this.createMovieForm.value.startTime(),
+      'startTimeMill': this.startTimeMill,
       'price': this.createMovieForm.value.price
       }
     console.log('movie created ', this.movie);
     this.createUser(this.movie);
+  }
+  setDate(selectedDate: Date): void {
+    this.startTime = selectedDate;
+    this.startTimeMill = this.startTime.getTime();
+    console.log("selected Date Milliseconds", this.startTimeMill);
   }
 }
