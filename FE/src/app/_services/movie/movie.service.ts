@@ -51,13 +51,21 @@ export class MovieService {
         catchError(handleError('updateMovie', movie))
       )
     }
-
+    deleteMovie(id): Observable<Movie>{
+      return this.http.delete<Movie>(`${this.movieUrl}/${id}`).pipe(
+        tap(id => this.movieDeleted()),
+        catchError(handleError('error deleting', id))
+      )
+    }
     createdMovieToast(movie: Movie){
       this.toastService.movieCreated();
     }
     errorMovieToast(errorMessage: string, movie: Movie){
       this.toastService.movieNotCreated();
       return handleError(errorMessage, movie);
+    }
+    movieDeleted(){
+      this.toastService.movieDeleted();
     }
 
 

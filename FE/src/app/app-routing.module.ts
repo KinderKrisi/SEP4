@@ -10,6 +10,7 @@ import { LoginComponent} from './login/login.component';
 import { AdminCreateMovieComponent} from './admin-create-movie/admin-create-movie.component';
 import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { AdminParkingComponent } from './admin-parking/admin-parking.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'adminCreateMovie', component: AdminCreateMovieComponent},
   {path: 'movieReservation', component: MovieReservationComponent},
-  {path: 'movie/:id', component: MovieDetailComponent}
+  {path: 'movie/:id', component: MovieDetailComponent},
+  {path: 'adminParking', component: AdminParkingComponent}
 
 ];
 
