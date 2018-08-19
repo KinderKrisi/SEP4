@@ -92,7 +92,21 @@ namespace API.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-        
+
+        [HttpDelete("{id}")]
+        public ActionResult<Movie> DeleteMovie(long id)
+        {
+            var item = _context.Movies.Find(id);
+            if (item == null)
+            {
+                return NotFound("item with this id was not found");
+            }
+
+            _context.Movies.Remove(item);
+            _context.SaveChanges();
+            return Ok(_context.Movies.Include(x => x.Seats).FirstOrDefault(x => x.Id == id));
+        }
+
         private Movie CreateMovie(MovieDTO movieFe)
         {
             var startdate = DateTimeOffset.FromUnixTimeMilliseconds(movieFe.StartTimeMill).UtcDateTime;

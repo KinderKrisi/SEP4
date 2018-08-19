@@ -4,12 +4,13 @@
     <div *ngIf="user.role == 'admin'">
       <a routerLink="/adminUsers">Admin Users</a>
       <a routerLink="/adminCreateMovie">Create movie</a>
+      <a routerLink="/movies"> Movies</a>
+      <a routerLink="/adminParking">Parking</a>
     </div>
 
     <div *ngIf="user.role == 'user'">
       <a routerLink="/movies"> Movie reservation</a>
       <a routerLink="/myReservations">My Reservations</a>
-      <!-- <a routerLink="/movieReservation">Reserve movie</a>-->
     </div>
 
   </div>

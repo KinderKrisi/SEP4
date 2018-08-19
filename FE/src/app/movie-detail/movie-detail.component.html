@@ -1,4 +1,4 @@
-<div class="container ui-g ui-fluid">
+<div class="container ui-g ui-fluid" *ngIf="dataService.user">
   <div class=" ui-g-12">
     <form [formGroup]="movieDetailForm" (ngSubmit)="onSubmit()">
       <p-toast position="top-right"></p-toast>
@@ -19,8 +19,8 @@
       </div>
 
 
-      <div class="ui-g-6" *ngIf="user">
-        <div class="ui-g-12">
+      <div class="ui-g-6" *ngIf="user.role == 'user'">
+        <div class="ui-g-6">
           <p-multiSelect [options]="seats" formControlName="selectedSeats" [(ngModel)]="seatsModel"></p-multiSelect>
           <span>Do you wish to reserve a parking place?
             <input type="checkbox" formControllName="parking" (change)="changeCheckbox($event)">
@@ -57,6 +57,16 @@
           <div class="ui-g-2">
             <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Reserve" (click)="onSubmit($event)"></button>
           </div>
+        </div>
+      </div>
+
+      <div class="ui-g-12" *ngIf="user.role == 'admin'">
+
+        <div class="ui-g-1">
+          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Update" (click)="update($event)"></button>
+        </div>
+        <div class="ui-g-1">
+          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Delete" (click)="delete($event)"></button>
         </div>
       </div>
 

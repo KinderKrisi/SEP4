@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -10,7 +10,7 @@ import { LoginComponent} from './login/login.component';
 import { AdminCreateMovieComponent} from './admin-create-movie/admin-create-movie.component';
 import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { AdminParkingComponent } from './admin-parking/admin-parking.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'adminCreateMovie', component: AdminCreateMovieComponent},
   {path: 'movieReservation', component: MovieReservationComponent},
   {path: 'movie/:id', component: MovieDetailComponent},
-  {path: 'adminUsers/:id', component: UserDetailComponent}
+  {path: 'adminParking', component: AdminParkingComponent}
 
 ];
 

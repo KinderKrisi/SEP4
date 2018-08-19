@@ -28,4 +28,7 @@ movieReservationSuccess(){
 movieReservationFail(){
   this.messageService.add({severity:'error', summary:'Movie reservation', detail:'Movie was not reserved'});
 }
+movieDeleted(){
+  this.messageService.add({severity:'success', summary:'Movie', detail:'Movie deleted'});
+}
 }

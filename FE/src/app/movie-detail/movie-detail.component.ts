@@ -9,6 +9,7 @@ import { MovieReservation } from '../_models/movieReservation';
 import { SelectItem } from '../../../node_modules/primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MovieReservationService } from '../_services/movie-reservation/movie-reservation.service';
+import { MovieService } from '../_services/movie/movie.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -29,10 +30,11 @@ export class MovieDetailComponent implements OnInit {
   numberOfTickets: Number;
   seatsModel: SelectItem[];
 
-  parkingWanted:boolean;
+  parkingWanted: boolean;
   parkingPlaces: number;
 
   constructor(private activedRoute: ActivatedRoute,
+    private movieService: MovieService,
     private movieReservationService: MovieReservationService,
     private formBuilder: FormBuilder,
     private dataService: DataService,
@@ -42,18 +44,18 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activedRoute.params.subscribe(params => { this.id = params.id });
-    this.movie = this.dataService.getMovies()[this.id-1];
+    this.movie = this.dataService.getMovies()[this.id - 1];
     this.availableSeats = this.movie.seats.filter(x => x.reserved == false);
     this.user = JSON.parse(localStorage.getItem("currentUser"))
     this.seatsModel = [];
     this.movieDetailForm = this.formBuilder.group({
       selectedSeats: [[], [Validators.required]],
       parking: false,
-      parkingPlaces:[[""], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
-     
+      parkingPlaces: [[""], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
+
     });
     console.log("seats count", this.seatsModel.length);
-    this.parkingWanted= false;
+    this.parkingWanted = false;
   }
 
   get f() { return this.movieDetailForm.controls; }
@@ -89,7 +91,7 @@ export class MovieDetailComponent implements OnInit {
     }
     else {
       this.movieDetailForm.value.parking = true;
-      this.parkingWanted=true;
+      this.parkingWanted = true;
      /* this.movieDetailForm = this.formBuilder.group({
         parkingPlaces: [Validators.required, Validators.max(this.seatsModel.length)]
        
@@ -124,5 +126,12 @@ export class MovieDetailComponent implements OnInit {
       { label: "row: 4, seatNumber: 3", value: 18 },
       { label: "row: 4, seatNumber: 4", value: 19 },
       { label: "row: 4, seatNumber: 5", value: 20 },]
+  }
+
+  update() {
+    console.log('update');
+  }
+  delete():void {
+      this.movieService.deleteMovie(this.id).subscribe();
   }
 }
