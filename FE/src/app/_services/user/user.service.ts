@@ -13,6 +13,7 @@ import { ToastService } from '../toast/toast.service';
 import { Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
+import { error } from 'util';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -62,7 +63,7 @@ export class UserService {
       }
     }).pipe(
       tap(user => this.loginUser(user)),
-      catchError(this.errorToastLogin("login failed", null))
+      catchError(this.errorToastLogin("login failed",null))
     )
   }
 
@@ -71,6 +72,7 @@ export class UserService {
     this.router.navigate(["dashboard"]);
   }
   errorToastLogin(errorMessage: string, user: User) { // TODO why error toast when success
+    console.log("error message", errorMessage)
     this.toast.errorLogin();
     return handleError(errorMessage, user);
   }

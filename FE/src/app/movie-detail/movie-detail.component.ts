@@ -70,17 +70,18 @@ export class MovieDetailComponent implements OnInit {
     this.movieDetailForm.value.selectedSeats.forEach(x => {
       this.movieReservation = {
         endDate: this.movie.endTime,
-        movieId: this.movie.Id,
+        movieId: +this.id,
         startDate: this.movie.startTime,
-        seatId: x,
-        user: this.user,
+        seatId: ((+this.id - 1) * 20)+ x,
+        userId: this.user.id,
         wantParking: this.movieDetailForm.value.parking
       }
+      console.log ("sending reservation request ", this.movieReservation);
       this.sendReservation(this.movieReservation);
     });
   }
   sendReservation(movieReservation: MovieReservation) {
-    return this.movieReservationService.reserveMovie(movieReservation);
+    return this.movieReservationService.reserveMovie(movieReservation).subscribe();
   }
 
   changeCheckbox(): void {

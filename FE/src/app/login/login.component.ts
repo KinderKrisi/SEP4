@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.login(this.email, this.password);
   }
   login(email: string, password : string): void{
+    console.log("login in prgress");
     this.userService.login(email , password).subscribe();
   }
 }

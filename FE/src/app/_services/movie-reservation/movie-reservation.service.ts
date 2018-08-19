@@ -22,7 +22,7 @@ export class MovieReservationService {
     private toast: ToastService
   ) { }
 
-  private reservationsUrl = '/api/movieReservation';
+  private reservationsUrl = '/api/moviereservation';
 
   getMovieReservations(): Observable<MovieReservation[]> {
     return this.http.get<MovieReservation[]>(this.reservationsUrl).pipe(
@@ -31,6 +31,7 @@ export class MovieReservationService {
     )
   }
   reserveMovie(movieReservation: MovieReservation): Observable<MovieReservation> {
+    console.log("sending movie reservation", movieReservation)
     return this.http.post<MovieReservation>(this.reservationsUrl, movieReservation).pipe(
       tap(response => this.successReservation()),
       catchError(this.failReservation("Reservation failed", null))

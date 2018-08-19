@@ -24,8 +24,8 @@ namespace API.Controllers
         public ActionResult GetUserReservations(long id)
         {
             //Get movies where user with ID has reserved seats
-            var movies = _context.Movies.Include(x => x.Seats).ThenInclude(x => x.User).ToList();
-            var parkings = _context.Parking.Include(x => x.User).Where(x=> x.User != null).ToList();
+            var movies = _context.Movies.Include(x => x.Seats).ToList();
+            var parkings = _context.Parking.Where(x=> x.UserId > 0).ToList();
 
             var result = FindReservedByUser(id, movies, parkings);
 
@@ -47,7 +47,7 @@ namespace API.Controllers
             {
                 foreach (var seat in movie.Seats)
                 {
-                    if (seat.Reserved == true && seat.User.Id == userId)
+                    if (seat.Reserved == true && seat.UserId == userId)
                     {
                         reservedSeats.Add(seat);
                         if (!reservedMovies.Contains(movie))
@@ -61,7 +61,7 @@ namespace API.Controllers
             var reservedParkingPlaces = new List<ParkingPlace>();
             if (parking.Count > 0)
             {
-                reservedParkingPlaces = parking.FindAll(x => x.User.Id == userId).ToList();
+                reservedParkingPlaces = parking.FindAll(x => x.UserId == userId).ToList();
             }
 
             var result = new UserReservation()

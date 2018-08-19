@@ -12,7 +12,7 @@ namespace API.Models
         public int Row { get; set; }
         public int SeatNumber { get; set; }
         public bool Reserved { get; set; }
-        public User User { get; set; } // user which has reserved the seat
+        public long UserId { get; set; }
 
         public Movie Movie { get; set; }
     }

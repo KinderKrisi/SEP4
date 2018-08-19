@@ -22,7 +22,7 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<List<ParkingPlace>> GetAllParking()
         {
-            return Ok(_context.Parking.Include(x => x.User).ToList());
+            return Ok(_context.Parking.ToList());
         }
 
         [HttpPut("{id}")]
@@ -34,9 +34,9 @@ namespace API.Controllers
                 return NotFound("Parking slot was not found");
             }
 
-            if (parking.User != null)
+            if (parking.UserId > 0)
             {
-                slot.User = parking.User;
+                slot.UserId = parking.UserId;
             }
 
             if (parking.StartDate != null)
