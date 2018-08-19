@@ -3,9 +3,12 @@
   <a routerLink="/dashboard">Dashboard</a>
 
   <div *ngIf="!dataService.logedin">
+    <a routerLink="/movies"> Movies</a>
     <a routerLink="/registration">Registration</a>
     <a routerLink="/login">Log in</a>
   </div>
+
+
   <button *ngIf="dataService.logedin" (click)="onSubmit($event)"> Log out</button>
 
 </nav>
