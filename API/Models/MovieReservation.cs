@@ -9,7 +9,7 @@ namespace API.Models
     {
         public long MovieId { get; set; }
         public long SeatId { get; set; }
-        public User User { get; set; }
+        public long UserId { get; set; }
         public bool WantParking { get; set; }
         public DateTime StarDate { get; set; }
         public DateTime EndDate { get; set; }

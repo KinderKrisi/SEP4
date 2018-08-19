@@ -4,7 +4,7 @@ export class ParkingPlace {
     id : Number;
     startDate : Date;
     endDate : Date;
-    user: User;
+    userId: number;
     reserved: Boolean;
 
 }

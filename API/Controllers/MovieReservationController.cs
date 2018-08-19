@@ -24,7 +24,7 @@ namespace API.Controllers
         {
             if (reservation != null)
             {
-                var movie = _context.Movies.Include(x => x.Seats).ThenInclude(x => x.User).FirstOrDefault(x => x.Id == reservation.MovieId);
+                var movie = _context.Movies.Include(x => x.Seats).FirstOrDefault(x => x.Id == reservation.MovieId);
                 var seat = movie.Seats.FirstOrDefault(x => x.Id == reservation.SeatId);
 
                 //var seat = (from x in _context.Movies.Find(reservation.movieId).Seats
@@ -32,34 +32,35 @@ namespace API.Controllers
                 //    select x).FirstOrDefault();
                 if (seat != null)
                 {
-                    seat.User = reservation.User;
+                    seat.UserId = reservation.UserId;
                     seat.Reserved = true;
                     _context.SaveChanges();
 
                     //TODO: fix sending multiple request fro parking reservation from one user -> on Front End
                     if (reservation.WantParking)
                     {
-                        var parking = _context.Parking.Include(x => x.User).FirstOrDefault(x => x.Reserved == false);
+                        var parking = _context.Parking.FirstOrDefault(x => x.Reserved == false);
 
                         if (parking != null)
                         {
-                            parking.User = reservation.User;
+                            parking.UserId = reservation.UserId;
                             parking.StartDate = reservation.StarDate.AddMinutes(-30);
                             parking.EndDate = reservation.EndDate.AddMinutes(30);
                             parking.Reserved = true;
 
                             _context.SaveChanges();
 
-                            return Ok("Movie and Parking reserved");
+                            return NoContent();
+
                         }
 
-                        return NotFound("Movie reserved but parking not found");
+                        return CreatedAtRoute("getMovieAndParking", reservation);
                     }
 
-                    return Ok("Movie reserved");
+                    return NoContent();
                 }
 
-                return NotFound("Movie not found");
+                return CreatedAtRoute("getMovie", reservation);
             }
 
             return BadRequest();

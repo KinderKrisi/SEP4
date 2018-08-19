@@ -32,7 +32,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             /* TODO: JWT authentication is ready implement it into the controllers once passing headers with authorization is fixed
-            */
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -47,7 +47,7 @@ namespace API
                 };
             });
 
-
+            */
             // Add "Default" CORS policy
             services.AddCors(options =>
             {
@@ -89,8 +89,8 @@ namespace API
                 app.UseHsts();
             }
             /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
-            */
             app.UseAuthentication();
+            */
            
 
             //Enabling cors for every header and method coming from localhost:42000

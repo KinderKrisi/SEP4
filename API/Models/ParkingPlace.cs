@@ -10,7 +10,7 @@ namespace API.Models
         public long Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public User User { get; set; }
+        public long UserId { get; set; }
         public bool Reserved { get; set; }
         
     }

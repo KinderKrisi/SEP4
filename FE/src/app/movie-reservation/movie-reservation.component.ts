@@ -76,7 +76,7 @@ ngOnInit() {
         movieId: this.movie.Id,
         startDate: this.movie.startTime,
         seatId: x,
-        user: this.user,
+        userId: this.user.id,
         wantParking: this.ReservationForm.value.parking
       }
 
