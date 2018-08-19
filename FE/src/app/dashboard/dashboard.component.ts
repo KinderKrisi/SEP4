@@ -17,7 +17,8 @@ export class DashboardComponent implements OnInit {
     
       console.log("loged in", this.dataService.logedin);
     
-      this.user = this.dataService.getUser();
+      //this.user = JSON.parse(localStorage.getItem("currentUser"));
+      this.user = JSON.parse(localStorage.getItem("currentUser"));
   }
 
 }

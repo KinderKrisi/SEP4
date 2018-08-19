@@ -27,7 +27,7 @@ export class MyReservationsComponent implements OnInit {
     this.reservedParking = [];
     this.reservedSeats = [];
     this.reservedMovies = [];
-    this.user = this.dataService.getUser();
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.getUserReservations(this.user.id);
     console.log("user service reservation", this.userReservations);
     this.fillObjects(this.userReservations);

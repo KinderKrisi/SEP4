@@ -19,7 +19,7 @@
       </div>
 
 
-      <div class="ui-g-6" *ngIf="dataService.user">
+      <div class="ui-g-6" *ngIf="user">
         <div class="ui-g-12">
           <p-multiSelect [options]="seats" formControlName="selectedSeats" [(ngModel)]="seatsModel"></p-multiSelect>
           <span>Do you wish to reserve a parking place?

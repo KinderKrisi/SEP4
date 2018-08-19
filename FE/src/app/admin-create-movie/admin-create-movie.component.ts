@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 import { Movie } from '../_models/movie';
 import { MovieService } from '../_services/movie/movie.service';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-admin-create-movie',
@@ -22,11 +23,13 @@ export class AdminCreateMovieComponent implements OnInit {
   movie: Movie;
   startTimeMill: number;
   startTime = new Date();
+  user : User;
 
   constructor(private movieService: MovieService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.minDateValue.setDate(this.minDateValue.getDate() + 1);
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.createMovieForm = this.formBuilder.group({
       name: ['', Validators.required],
       length: ['', [Validators.required, Validators.pattern('[1-9]+[0-9]*')]],

@@ -17,14 +17,20 @@ export class AppComponent {
   submitted = false;
 
   constructor(private dataService: DataService,
-  public Router: Router) { }
+  public Router: Router) { 
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+
+  }
 
   ngOnInit() {    
-      this.user = this.dataService.getUser();
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+      //this.user = JSON.parse(localStorage.getItem("currentUser"));
+      console.log("user", this.user)
   }
 
 
-  onSubmit() {
+  logout() {
+    localStorage.removeItem("currentUser");
     this.dataService.logedin = false;
     this.Router.navigate(['/dashboard'])
   }

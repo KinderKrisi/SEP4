@@ -27,6 +27,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AdminParkingComponent } from './admin-parking/admin-parking.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AdminParkingComponent } from './admin-parking/admin-parking.component';
     AdminCreateMovieComponent,
     MovieReservationComponent,
     MovieDetailComponent,
-    AdminParkingComponent
+    AdminParkingComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

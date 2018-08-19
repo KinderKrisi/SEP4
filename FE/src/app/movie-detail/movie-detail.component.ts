@@ -44,7 +44,7 @@ export class MovieDetailComponent implements OnInit {
     this.activedRoute.params.subscribe(params => { this.id = params.id });
     this.movie = this.dataService.getMovies()[this.id-1];
     this.availableSeats = this.movie.seats.filter(x => x.reserved == false);
-    this.user = this.dataService.getUser();
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
     this.seatsModel = [];
     this.movieDetailForm = this.formBuilder.group({
       selectedSeats: [[], [Validators.required]],

@@ -1,12 +1,9 @@
 <div>
-  <ul>
-    <li *ngFor="let user of users">
-      {{user.id}}
-      {{user.firstName}}
-      {{user.lastName}}
-      {{user.email}}
-      {{user.phoneNumber}}
-      {{user.role}}
-    </li>
+  <ul *ngFor="let user of users">
+    <a [routerLink]="['/adminUsers', user.id]">
+      <li>
+        {{user.id}} {{user.firstName}} {{user.lastName}} {{user.email}} {{user.phoneNumber}} {{user.role}}
+      </li>
+    </a>
   </ul>
 </div>

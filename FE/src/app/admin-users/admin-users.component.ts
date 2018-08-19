@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../_models/user';
 import { UserService } from '../_services/user/user.service';
+import { DataService } from '../_services/data/data.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-admin-users',
@@ -10,14 +12,21 @@ import { UserService } from '../_services/user/user.service';
 })
 export class AdminUsersComponent implements OnInit {
 users: User[]
-  constructor(private userService: UserService) { }
+user: User;
+  constructor(private userService: UserService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+    this.checkIfLogedIn();
     this.getAllUsers();
   }
 
   getAllUsers(): void {
     this.userService.getAll().subscribe(users => this.users = users);
-    console.log("all users", this.users);
+  }
+  checkIfLogedIn() : void{
+    if (!this.user || this.user.role != "admin"){
+      this.router.navigate(['dashboard']);
+    }
   }
 }

@@ -53,7 +53,7 @@ export class MovieReservationComponent implements OnInit {
     ]
   }
 ngOnInit() {
-  this.user = this.dataService.getUser();
+  this.user = JSON.parse(localStorage.getItem("currentUser"))
   console.log("blabla",this.user);
   this.ReservationForm = this.formBuilder.group({
     selectedSeats: [[], [Validators.required]],

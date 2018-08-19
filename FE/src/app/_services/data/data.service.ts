@@ -11,8 +11,10 @@ export class DataService {
   public movie: Movie;
   public movies: Movie[];
   public logedin: boolean;
+  public users: User[];
   constructor() { 
-    this.logedin = false;
+    this.logedin = false
+    if(localStorage.getItem("currentUser")) this.logedin = true;
   }
 
   setUser(user: User){
@@ -21,6 +23,12 @@ export class DataService {
   }
   getUser(){
     return this.user;
+  }
+  setUsers(users: User[]){
+    this.users = users;
+  }
+  getUsers() {
+    return this.users;
   }
   getMovie(){
     return this.movie;

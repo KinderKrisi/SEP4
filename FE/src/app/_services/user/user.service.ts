@@ -37,7 +37,7 @@ export class UserService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
-      tap(users => console.log('fetched reservations', users)),
+      tap(users => this.dataService.setUsers(users)),
       catchError(handleError('getUsers', []))
     )
   }
@@ -50,6 +50,8 @@ export class UserService {
   }
 
   update(user: User): Observable<User> {
+    console.log("update user service", user);
+    console.log("user id", user.id)
     return this.http.put<User>(`${this.userUrl}/${user.id}`, user).pipe(
       tap(user => console.log('user has been changed', user)),
       catchError(handleError('updateUser', user))
@@ -68,7 +70,8 @@ export class UserService {
   }
 
   loginUser(user: User) {
-    this.dataService.setUser(user);
+    this.dataService.logedin = true;
+    localStorage.setItem("currentUser", JSON.stringify(user));
     this.router.navigate(["dashboard"]);
   }
   errorToastLogin(errorMessage: string, user: User) { // TODO why error toast when success

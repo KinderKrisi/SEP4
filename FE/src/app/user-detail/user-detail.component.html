@@ -1,0 +1,48 @@
+<div class="container ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+      <form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
+        <p-toast position="top-right"></p-toast>
+        <div class="ui-inputgroup ui-g-12">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <input formControlName="firstName" pInputText placeholder="First name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+          />
+        </div>
+        <div class="ui-inputgroup ui-g-12">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <input formControlName="lastName" pInputText placeholder="Last name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          />
+        </div>
+        <div class="ui-inputgroup ui-g-12">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-phone"></i>
+          </span>
+          <input formControlName="phoneNumber" pInputText placeholder="Phone number" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"
+          />
+        </div>
+        <div class="ui-inputgroup ui-g-12">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input formControlName="email" pInputText placeholder="Email address" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          />
+        </div>
+        <div class="ui-inputgroup ui-g-12">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-lock"></i>
+          </span>
+          <input formControlName="password"  type="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          />
+        </div>
+        <div class="ui-inputgroup ui-g-12">
+          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Change User" (click)="onSubmit($event)"></button>
+        </div>
+      </form>
+
+      <button pButton type="button" class="ui-button-raised ui-button-rounded" label="Back" (click)="onBack()"></button>
+    </div>
+  </div>
+  
