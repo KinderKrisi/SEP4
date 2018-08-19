@@ -37,10 +37,12 @@ export class MovieReservationService {
     )
   }
   successReservation() {
+    console.log('success')
     this.toast.movieReservationSuccess();
   }
-  failReservation(errorMessage:string, reservation: MovieReservation) {
+  failReservation(errorMessage: string, reservation: MovieReservation) {
     this.toast.movieReservationFail();
+    console.log('fail');
     return handleError(errorMessage, reservation);
   }
 }

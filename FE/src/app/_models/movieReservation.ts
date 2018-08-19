@@ -7,6 +7,6 @@ export class MovieReservation {
     user: User;
     startDate: Date;
     endDate: Date;
-    wantReservation: Boolean;
+    wantParking: Boolean;
     parkingPlaces? : ParkingPlace[]; 
 }

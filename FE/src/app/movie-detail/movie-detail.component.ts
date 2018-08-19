@@ -29,6 +29,9 @@ export class MovieDetailComponent implements OnInit {
   numberOfTickets: Number;
   seatsModel: SelectItem[];
 
+  parkingWanted:boolean;
+  parkingPlaces: number;
+
   constructor(private activedRoute: ActivatedRoute,
     private movieReservationService: MovieReservationService,
     private formBuilder: FormBuilder,
@@ -45,8 +48,12 @@ export class MovieDetailComponent implements OnInit {
     this.seatsModel = [];
     this.movieDetailForm = this.formBuilder.group({
       selectedSeats: [[], [Validators.required]],
-      parking: false
+      parking: false,
+      parkingPlaces:[[""], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
+     
     });
+    console.log("seats count", this.seatsModel.length);
+    this.parkingWanted= false;
   }
 
   get f() { return this.movieDetailForm.controls; }
@@ -65,7 +72,7 @@ export class MovieDetailComponent implements OnInit {
         startDate: this.movie.startTime,
         seatId: x,
         user: this.user,
-        wantReservation: this.movieDetailForm.value.parking
+        wantParking: this.movieDetailForm.value.parking
       }
       this.sendReservation(this.movieReservation);
     });
@@ -77,10 +84,16 @@ export class MovieDetailComponent implements OnInit {
   changeCheckbox(): void {
     if (this.movieDetailForm.value.parking) {
       this.movieDetailForm.value.parking = false;
+      this.parkingWanted = false;
     }
     else {
       this.movieDetailForm.value.parking = true;
-    }
+      this.parkingWanted=true;
+     /* this.movieDetailForm = this.formBuilder.group({
+        parkingPlaces: [Validators.required, Validators.max(this.seatsModel.length)]
+       
+      });
+    */}
     console.log("checkbox changed")
   }
 
