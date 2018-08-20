@@ -66,14 +66,18 @@ namespace API
                 options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
             });
 
-            /* TODO: switch to SQL database once the conenction with sql db is fixed
+            /* TODO: uncomment to enable sql database.
             services.AddDbContext<CinemaContext>(opt =>
                 opt.UseSqlServer("Data Source=localhost;Initial Catalog=Cinema;Integrated Security=True;")
                 
                 );
             */
+
+            // TODO: comment if you are switching to sql database server
             services.AddDbContext<CinemaContext>(opt =>
                 opt.UseInMemoryDatabase("Cinema"));
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
