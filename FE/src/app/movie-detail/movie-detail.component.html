@@ -1,4 +1,4 @@
-<div class="container ui-g ui-fluid" *ngIf="dataService.user">
+<div class="container ui-g ui-fluid" *ngIf="dataService.logedin">
   <div class=" ui-g-12">
     <form [formGroup]="movieDetailForm" (ngSubmit)="onSubmit()">
       <p-toast position="top-right"></p-toast>

@@ -31,19 +31,16 @@ export class MovieReservationService {
     )
   }
   reserveMovie(movieReservation: MovieReservation): Observable<MovieReservation> {
-    console.log("sending movie reservation", movieReservation)
     return this.http.post<MovieReservation>(this.reservationsUrl, movieReservation).pipe(
       tap(response => this.successReservation()),
       catchError(this.failReservation("Reservation failed", null))
     )
   }
   successReservation() {
-    console.log('success')
     this.toast.movieReservationSuccess();
   }
   failReservation(errorMessage: string, reservation: MovieReservation) {
     this.toast.movieReservationFail();
-    console.log('fail');
     return handleError(errorMessage, reservation);
   }
 }

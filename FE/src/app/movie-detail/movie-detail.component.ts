@@ -54,7 +54,7 @@ export class MovieDetailComponent implements OnInit {
       parkingPlaces: [[""], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
 
     });
-    console.log("seats count", this.seatsModel.length);
+    console.log("user",  this.user);
     this.parkingWanted = false;
   }
 
