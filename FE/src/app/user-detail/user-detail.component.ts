@@ -67,5 +67,9 @@ export class UserDetailComponent implements OnInit {
   onBack() : void {
     this.router.navigate(['adminUsers']);
   }
+  deleteUser(): void {
+    this.userService.deleteUser(this.user.id).subscribe();
+    this.router.navigate(['adminUsers']);
+  }
 
 }

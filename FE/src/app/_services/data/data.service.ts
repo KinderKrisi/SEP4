@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../_models/user';
 import { Movie } from '../../_models/movie';
+import { ParkingPlace } from '../../_models/parkingPlace';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class DataService {
   public movies: Movie[];
   public logedin: boolean;
   public users: User[];
+  public parkingLot: ParkingPlace[];
   constructor() { 
     this.logedin = false
     if(localStorage.getItem("currentUser")) this.logedin = true;
@@ -41,6 +43,12 @@ export class DataService {
   }
   setMovies(movies: Movie[]){
     this.movies = movies;
+  }
+  setParkingLot(parkingLot: ParkingPlace[]){
+    this.parkingLot = parkingLot;
+  }
+  getParkingLot() {
+    return this.parkingLot;
   }
 
 }

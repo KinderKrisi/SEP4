@@ -31,4 +31,10 @@ movieReservationFail(){
 movieDeleted(){
   this.messageService.add({severity:'success', summary:'Movie', detail:'Movie deleted'});
 }
+userDeleted(){
+  this.messageService.add({severity:'success', summary:'User', detail:'User deleted'});
+}
+parkingPlaceDeleted(){
+  this.messageService.add({severity:'success', summary:'Parking', detail:'Parking deleted'});
+}
 }

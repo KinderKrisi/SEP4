@@ -11,6 +11,7 @@ import { AdminCreateMovieComponent} from './admin-create-movie/admin-create-movi
 import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { AdminParkingComponent } from './admin-parking/admin-parking.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path: 'adminCreateMovie', component: AdminCreateMovieComponent},
   {path: 'movieReservation', component: MovieReservationComponent},
   {path: 'movie/:id', component: MovieDetailComponent},
-  {path: 'adminParking', component: AdminParkingComponent}
-
+  {path: 'adminParking', component: AdminParkingComponent},
+  {path: 'adminUsers/:id', component: UserDetailComponent}
 ];
 
 @NgModule({

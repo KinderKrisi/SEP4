@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Movie } from '../_models/movie';
 import { MovieService } from '../_services/movie/movie.service';
 import { User } from '../_models/user';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-admin-create-movie',
@@ -25,7 +26,7 @@ export class AdminCreateMovieComponent implements OnInit {
   startTime = new Date();
   user : User;
 
-  constructor(private movieService: MovieService, private formBuilder: FormBuilder) { }
+  constructor(private movieService: MovieService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.minDateValue.setDate(this.minDateValue.getDate() + 1);

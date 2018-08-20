@@ -84,6 +84,19 @@ namespace API.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+        [HttpDelete("{id}")]
+        public ActionResult<Movie> DeleteUser(long id)
+        {
+            var item = _context.Users.Find(id);
+            if (item == null)
+            {
+                return NotFound("item with this id was not found");
+            }
+
+            _context.Users.Remove(item);
+            _context.SaveChanges();
+            return Ok();
+        }
 
     }
 }

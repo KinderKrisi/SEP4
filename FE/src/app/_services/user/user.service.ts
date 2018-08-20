@@ -68,6 +68,15 @@ export class UserService {
       catchError(this.errorToastLogin("login failed",null))
     )
   }
+  deleteUser(id: Number){
+    return this.http.delete<any>(`${this.userUrl}/${id}`).pipe(
+      tap(id => this.userDeleted()),
+      catchError(handleError('error deleting', id))
+    )
+  }
+  userDeleted(){
+    this.toast.userDeleted();
+  }
 
   loginUser(user: User) {
     this.dataService.logedin = true;

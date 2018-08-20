@@ -29,4 +29,11 @@ user: User;
       this.router.navigate(['dashboard']);
     }
   }
+  deleteUser(userId : Number) : void {
+    this.userService.deleteUser(userId).subscribe();
+    console.log("user has been deleted", userId)
+  }
+  GoToDetail(userId: Number): void{
+    this.router.navigate([`/adminUsers/${userId}`])
+  }
 }

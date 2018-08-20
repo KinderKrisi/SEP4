@@ -25,6 +25,21 @@ namespace API.Controllers
             return Ok(_context.Parking.ToList());
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult<Movie> DeleteUserFromParking(long id)
+        {
+            var item = _context.Parking.Find(id);
+            if (item == null)
+            {
+                return NotFound("item with this id was not found");
+            }
+
+            item.Reserved = false;
+            item.UserId = 0;
+            _context.SaveChanges();
+            return Ok();
+        }
+
         [HttpPut("{id}")]
         public IActionResult Update(long id, ParkingPlace parking)
         {
@@ -54,6 +69,8 @@ namespace API.Controllers
                 slot.Reserved = parking.Reserved;
             }
 
+            _context.Parking.Update(slot);
+            _context.SaveChanges();
             return NoContent();
         }
 

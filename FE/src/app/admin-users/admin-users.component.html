@@ -1,9 +1,10 @@
 <div>
   <ul *ngFor="let user of users">
-    <a [routerLink]="['/adminUsers', user.id]">
       <li>
         {{user.id}} {{user.firstName}} {{user.lastName}} {{user.email}} {{user.phoneNumber}} {{user.role}}
+        <button pButton type="button" class="ui-button-raised ui-button-rounded" label="Detail" (click)="GoToDetail(user.id)"></button>
+        <button pButton type="button" class="ui-button-raised ui-button-rounded red" label="Remove" (click)="DeleteUser(user.id)"></button>
+
       </li>
-    </a>
   </ul>
 </div>
