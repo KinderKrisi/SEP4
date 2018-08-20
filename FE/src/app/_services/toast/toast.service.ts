@@ -37,4 +37,7 @@ userDeleted(){
 parkingPlaceDeleted(){
   this.messageService.add({severity:'success', summary:'Parking', detail:'Parking deleted'});
 }
+invalidParking(){
+  this.messageService.add({severity:'error', summary:'Parking', detail:'You can not have more parking places than tickets'});
+}
 }
