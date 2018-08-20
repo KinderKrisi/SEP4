@@ -39,13 +39,14 @@ export class MovieDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private router: Router) {
-    this.CreateSeats();
   }
 
   ngOnInit() {
     this.activedRoute.params.subscribe(params => { this.id = params.id });
     this.movie = this.dataService.getMovies()[this.id - 1];
+    this.seats = [];
     this.availableSeats = this.movie.seats.filter(x => x.reserved == false);
+    this.CreateSeats();
     this.user = JSON.parse(localStorage.getItem("currentUser"))
     this.seatsModel = [];
     this.movieDetailForm = this.formBuilder.group({
@@ -67,15 +68,23 @@ export class MovieDetailComponent implements OnInit {
     if (this.movieDetailForm.invalid) {
       return;
     }
+
+    let _numberOfParking = +this.movieDetailForm.value.parkingPlaces;
     this.movieDetailForm.value.selectedSeats.forEach(x => {
+      let _wantParking = this.movieDetailForm.value.parking;
+
+      if(_numberOfParking <= 0){
+        _wantParking = false;
+      }
       this.movieReservation = {
         endDate: this.movie.endTime,
         movieId: +this.id,
         startDate: this.movie.startTime,
-        seatId: ((+this.id - 1) * 20)+ x,
+        seatId: x,
         userId: this.user.id,
         wantParking: this.movieDetailForm.value.parking
       }
+      _numberOfParking--;
       console.log ("sending reservation request ", this.movieReservation);
       this.sendReservation(this.movieReservation);
     });
@@ -105,27 +114,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   CreateSeats() {
-    this.seats = [
-      { label: "row: 1, seatNumber: 1", value: 1 },
-      { label: "row: 1, seatNumber: 2", value: 2 },
-      { label: "row: 1, seatNumber: 3", value: 3 },
-      { label: "row: 1, seatNumber: 4", value: 4 },
-      { label: "row: 1, seatNumber: 5", value: 5 },
-      { label: "row: 2, seatNumber: 1", value: 6 },
-      { label: "row: 2, seatNumber: 2", value: 7 },
-      { label: "row: 2, seatNumber: 3", value: 8 },
-      { label: "row: 2, seatNumber: 4", value: 9 },
-      { label: "row: 2, seatNumber: 5", value: 10 },
-      { label: "row: 3, seatNumber: 1", value: 11 },
-      { label: "row: 3, seatNumber: 2", value: 12 },
-      { label: "row: 3, seatNumber: 3", value: 13 },
-      { label: "row: 3, seatNumber: 4", value: 14 },
-      { label: "row: 3, seatNumber: 5", value: 15 },
-      { label: "row: 4, seatNumber: 1", value: 16 },
-      { label: "row: 4, seatNumber: 2", value: 17 },
-      { label: "row: 4, seatNumber: 3", value: 18 },
-      { label: "row: 4, seatNumber: 4", value: 19 },
-      { label: "row: 4, seatNumber: 5", value: 20 },]
+      this.availableSeats.map(x=> this.seats.push(
+        {label: `row: ${x.row}, seat: ${x.seatNumber}`, value: x.id}
+      ))
+      console.log("seats only available", this.seats)
   }
 
   update() {
