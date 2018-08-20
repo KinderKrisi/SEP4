@@ -7,3 +7,7 @@ p{
 .title{
     font-weight: bold;
 }
+#delete{
+    background-color: red;
+    border-color: red;
+}

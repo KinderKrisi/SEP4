@@ -2,12 +2,12 @@
   <div *ngIf="parkingLot.length > 0">
     <h2>Reserved Places</h2>
     <div *ngFor="let place of reservedPlaces">
-      {{place.id}} {{place.startDate}} {{place.endDate}} {{place.userId}} 
-      <button pButton type="button" class="ui-button-raised ui-button-rounded red" label="Remove" (click)="DeleteParking(place.id)"></button>
+      {{place.id}} &nbsp; {{place.startDate}}&nbsp; {{place.endDate}} &nbsp; {{place.userId}} 
+      <button pButton type="button" class="ui-button-raised ui-button-rounded" id="delete" label="Remove" (click)="DeleteParking(place.id)"></button>
 
     </div>
 
-    <h2>Reserved Places</h2>
+    <h2>Empty Places</h2>
     <div *ngFor="let place of freePlaces">
       {{place.id}}
     </div>
