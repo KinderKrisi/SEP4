@@ -23,7 +23,7 @@ movieNotCreated(){
   this.messageService.add({severity:'error', summary:'Movie creation', detail:'Movie was not created'});
 }
 movieReservationSuccess(){
-  this.messageService.add({severity:'success', summary:'Movie reservation', detail:'Moviereserved'});
+  this.messageService.add({severity:'success', summary:'Movie reservation', detail:'Movie reserved'});
 }
 movieReservationFail(){
   this.messageService.add({severity:'error', summary:'Movie reservation', detail:'Movie was not reserved'});
