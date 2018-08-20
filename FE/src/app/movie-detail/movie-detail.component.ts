@@ -52,7 +52,7 @@ export class MovieDetailComponent implements OnInit {
     this.movieDetailForm = this.formBuilder.group({
       selectedSeats: [[], [Validators.required]],
       parking: false,
-      parkingPlaces: [[""], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
+      parkingPlaces: [[], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
 
     });
     console.log("user",  this.user);
@@ -71,9 +71,11 @@ export class MovieDetailComponent implements OnInit {
 
     let _numberOfParking = +this.movieDetailForm.value.parkingPlaces;
     this.movieDetailForm.value.selectedSeats.forEach(x => {
-      let _wantParking = this.movieDetailForm.value.parking;
-
+      let _wantParking = this.parkingWanted;
+      console.log('wantParking',this.movieDetailForm.value.parking);
+      
       if(_numberOfParking <= 0){
+        console.log('_numberOfParking <= 0', _numberOfParking <= 0);
         _wantParking = false;
       }
       this.movieReservation = {
@@ -82,7 +84,7 @@ export class MovieDetailComponent implements OnInit {
         startDate: this.movie.startTime,
         seatId: x,
         userId: this.user.id,
-        wantParking: this.movieDetailForm.value.parking
+        wantParking: _wantParking
       }
       _numberOfParking--;
       console.log ("sending reservation request ", this.movieReservation);
@@ -97,16 +99,17 @@ export class MovieDetailComponent implements OnInit {
     if (this.movieDetailForm.value.parking) {
       this.movieDetailForm.value.parking = false;
       this.parkingWanted = false;
+      
     }
     else {
       this.movieDetailForm.value.parking = true;
       this.parkingWanted = true;
+      
      /* this.movieDetailForm = this.formBuilder.group({
         parkingPlaces: [Validators.required, Validators.max(this.seatsModel.length)]
        
       });
     */}
-    console.log("checkbox changed")
   }
 
   onBack(): void {
