@@ -8,7 +8,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { LoginComponent} from './login/login.component';
 import { AdminCreateMovieComponent} from './admin-create-movie/admin-create-movie.component';
-import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { AdminParkingComponent } from './admin-parking/admin-parking.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   {path: 'adminUsers', component: AdminUsersComponent},
   {path: 'login', component: LoginComponent},
   {path: 'adminCreateMovie', component: AdminCreateMovieComponent},
-  {path: 'movieReservation', component: MovieReservationComponent},
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'adminParking', component: AdminParkingComponent},
   {path: 'adminUsers/:id', component: UserDetailComponent}

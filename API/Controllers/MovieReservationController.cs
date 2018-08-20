@@ -43,9 +43,12 @@ namespace API.Controllers
 
                         if (parking != null)
                         {
+                            var startdate = DateTimeOffset.FromUnixTimeMilliseconds(reservation.StartDate).UtcDateTime;
+                            var enddate = DateTimeOffset.FromUnixTimeMilliseconds(reservation.EndDate).UtcDateTime;
+
                             parking.UserId = reservation.UserId;
-                            parking.StartDate = reservation.StarDate.AddMinutes(-30);
-                            parking.EndDate = reservation.EndDate.AddMinutes(30);
+                            parking.StartDate = startdate;
+                            parking.EndDate = enddate;
                             parking.Reserved = true;
 
                             _context.SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,13 @@ namespace API.Models
         public DateTime EndDate { get; set; }
         public long UserId { get; set; }
         public bool Reserved { get; set; }
-        
+        [NotMapped]
+        public double StartTimeMill => StartDate.ToUniversalTime().Subtract(
+            new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+        ).TotalMilliseconds;
+        [NotMapped]
+        public double EndTimeMill => EndDate.ToUniversalTime().Subtract(
+            new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+        ).TotalMilliseconds;
     }
 }

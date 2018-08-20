@@ -14,7 +14,6 @@ import { AdminCreateMovieComponent } from './admin-create-movie/admin-create-mov
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { MovieComponent } from './movie/movie.component';
-import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule} from 'primeng/button';
@@ -40,7 +39,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     MovieComponent,
     AdminUsersComponent,
     AdminCreateMovieComponent,
-    MovieReservationComponent,
     MovieDetailComponent,
     AdminParkingComponent,
     UserDetailComponent

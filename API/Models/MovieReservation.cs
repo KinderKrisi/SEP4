@@ -11,8 +11,8 @@ namespace API.Models
         public long SeatId { get; set; }
         public long UserId { get; set; }
         public bool WantParking { get; set; }
-        public DateTime StarDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public long StartDate { get; set; }
+        public long EndDate { get; set; }
 
         public List<ParkingPlace> ParkingPlaces { get; set; }
     }

@@ -21,6 +21,10 @@ export class MovieDetailComponent implements OnInit {
   id: number;
   movie: Movie;
   availableSeats: MovieSeat[];
+  _startTime = new Date();
+  _endTime = new Date();
+  startTimeMillL: Number;
+
 
   user: User;
   movieReservation: MovieReservation;
@@ -78,10 +82,12 @@ export class MovieDetailComponent implements OnInit {
         console.log('_numberOfParking <= 0', _numberOfParking <= 0);
         _wantParking = false;
       }
+
+      console.log("end date",this.movie);
       this.movieReservation = {
-        endDate: this.movie.endTime,
+        endDate: this.movie.endTimeMill,
         movieId: +this.id,
-        startDate: this.movie.startTime,
+        startDate: this.movie.startTimeMill,
         seatId: x,
         userId: this.user.id,
         wantParking: _wantParking
