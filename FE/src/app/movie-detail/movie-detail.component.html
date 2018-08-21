@@ -18,7 +18,7 @@
       </div>
 
       <div *ngIf="dataService.logedin">
-        <div class="ui-g-6" *ngIf="user.role == 'user'">
+        <div class="ui-g-6" *ngIf="user.role == 'user' && availableSeats.length >0">
           <div class="ui-g-6">
             <p-multiSelect [options]="seats" formControlName="selectedSeats" [(ngModel)]="seatsModel"></p-multiSelect>
             <span>Do you wish to reserve a parking place?
@@ -57,6 +57,10 @@
               <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Reserve" (click)="onSubmit($event)"></button>
             </div>
           </div>
+        </div>
+        <div class="ui-g-6" *ngIf="user.role == 'user' && availableSeats.length <=0">
+
+          <h3>We are sorry the movie is sold out</h3>
         </div>
 
         <div class="ui-g-12" *ngIf="user.role == 'admin'">
