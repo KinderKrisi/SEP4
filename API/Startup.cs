@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace API
@@ -66,7 +56,7 @@ namespace API
                 options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
             });
 
-            /* TODO: uncomment to enable sql database.
+            /* TODO: uncomment to enable sql database not fully tested
             services.AddDbContext<CinemaContext>(opt =>
                 opt.UseSqlServer("Data Source=localhost;Initial Catalog=Cinema;Integrated Security=True;")
                 
@@ -85,20 +75,17 @@ namespace API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
             /* TODO: uncoment once the services are working so we don't have to authenticate for each request 
             app.UseAuthentication();
             */
-           
+
 
             //Enabling cors for every header and method coming from localhost:42000
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseHttpsRedirection();
             app.UseMvc();

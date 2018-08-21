@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -29,10 +26,7 @@ namespace API.Controllers
         public ActionResult<Movie> DeleteUserFromParking(long id)
         {
             var item = _context.Parking.Find(id);
-            if (item == null)
-            {
-                return NotFound("item with this id was not found");
-            }
+            if (item == null) return NotFound("item with this id was not found");
 
             item.Reserved = false;
             item.UserId = 0;
@@ -44,35 +38,19 @@ namespace API.Controllers
         public IActionResult Update(long id, ParkingPlace parking)
         {
             var slot = _context.Parking.Find(id);
-            if (slot == null)
-            {
-                return NotFound("Parking slot was not found");
-            }
+            if (slot == null) return NotFound("Parking slot was not found");
 
-            if (parking.UserId > 0)
-            {
-                slot.UserId = parking.UserId;
-            }
+            if (parking.UserId > 0) slot.UserId = parking.UserId;
 
-            if (parking.StartDate != null)
-            {
-                slot.StartDate = parking.StartDate;
-            }
+            if (parking.StartDate != null) slot.StartDate = parking.StartDate;
 
-            if (parking.EndDate != null)
-            {
-                slot.EndDate = parking.EndDate;
-            }
+            if (parking.EndDate != null) slot.EndDate = parking.EndDate;
 
-            if (parking.Reserved != null)
-            {
-                slot.Reserved = parking.Reserved;
-            }
+            if (parking.Reserved != null) slot.Reserved = parking.Reserved;
 
             _context.Parking.Update(slot);
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }

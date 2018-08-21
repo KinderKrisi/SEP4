@@ -7,7 +7,6 @@ import { User } from '../../_models/user';
 
 import { handleError } from '../../_helper/handler';
 import { Observable } from 'rxjs';
-import { Login } from '../../_models/login';
 import { DataService } from '../data/data.service';
 import { ToastService } from '../toast/toast.service';
 import { Router } from '@angular/router';

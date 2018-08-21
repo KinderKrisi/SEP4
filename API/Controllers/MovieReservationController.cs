@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace API.Controllers
 {
@@ -19,6 +16,7 @@ namespace API.Controllers
         {
             _context = context;
         }
+
         [HttpPost]
         public IActionResult Create(MovieReservation reservation)
         {
@@ -54,7 +52,6 @@ namespace API.Controllers
                             _context.SaveChanges();
 
                             return NoContent();
-
                         }
 
                         return CreatedAtRoute("getMovieAndParking", reservation);
@@ -78,10 +75,7 @@ namespace API.Controllers
                     where x.Reserved
                     select x).ToList();
 
-                if (seats.Count > 0)
-                {
-                    return Ok(seats);
-                }
+                if (seats.Count > 0) return Ok(seats);
 
                 return NotFound("No reservation for a movie");
             }

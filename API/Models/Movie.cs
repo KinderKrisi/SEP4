@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Models
 {
@@ -14,8 +12,8 @@ namespace API.Models
         public string Language { get; set; }
         public DateTime StartTime { get; set; }
 
-        [NotMapped]
-        public DateTime EndTime => StartTime.AddMinutes(Length);
+        [NotMapped] public DateTime EndTime => StartTime.AddMinutes(Length);
+
         //public MovieSeats Seats { get; set; }
         [NotMapped]
         public double StartTimeMill => StartTime.ToUniversalTime().Subtract(
@@ -29,6 +27,5 @@ namespace API.Models
 
         public ICollection<MovieSeat> Seats { get; set; } = new HashSet<MovieSeat>();
         public double Price { get; set; }
-        
     }
 }
