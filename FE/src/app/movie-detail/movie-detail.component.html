@@ -1,75 +1,78 @@
-<div class="container ui-g ui-fluid" *ngIf="dataService.logedin">
+<div class="container ui-g ui-fluid">
   <div class=" ui-g-12">
     <form [formGroup]="movieDetailForm" (ngSubmit)="onSubmit()">
       <p-toast position="top-right"></p-toast>
       <div class="ui-g-12">
-        <div  class="ui-g-2">
-            <p class="title"> Movie name: </p>{{movie.name}} 
-        </div>
-        <div  class="ui-g-2">
-            <p class="title"> Length: </p>{{movie.length}} minutes
-        </div>
-        <div  class="ui-g-2">
-            <p class="title"> Language: </p>{{movie.language}}
+        <div class="ui-g-2">
+          <p class="title"> Movie name: </p>{{movie.name}}
         </div>
         <div class="ui-g-2">
-            <p class="title"> Price: </p>{{movie.price}} DKK
+          <p class="title"> Length: </p>{{movie.length}} minutes
         </div>
-        
+        <div class="ui-g-2">
+          <p class="title"> Language: </p>{{movie.language}}
+        </div>
+        <div class="ui-g-2">
+          <p class="title"> Price: </p>{{movie.price}} DKK
+        </div>
       </div>
 
+      <div *ngIf="dataService.logedin">
+        <div class="ui-g-6" *ngIf="user.role == 'user' && availableSeats.length >0">
+          <div class="ui-g-6">
+            <p-multiSelect [options]="seats" formControlName="selectedSeats" [(ngModel)]="seatsModel"></p-multiSelect>
+            <span>Do you wish to reserve a parking place?
+              <input type="checkbox" formControllName="parking" (change)="changeCheckbox($event)">
+            </span>
+            <div *ngIf="parkingWanted ">
+              <input formControlName="parkingPlaces" pInputText placeholder="number of parking places" [ngClass]="{ 'is-invalid': submitted && f.parkingPlaces.errors }"
+              />
+              <div *ngIf="submitted && f.parkingPlaces.errors" class="invalid-feedback">
+                <div *ngIf="f.parkingPlaces.errors.required">Number of parking places is required</div>
+                <div *ngIf="f.parkingPlaces.errors.max">Number of parking places can not be higher than number of reserved tickets</div>
+              </div>
 
-      <div class="ui-g-6" *ngIf="user.role == 'user'">
-        <div class="ui-g-6">
-          <p-multiSelect [options]="seats" formControlName="selectedSeats" [(ngModel)]="seatsModel"></p-multiSelect>
-          <span>Do you wish to reserve a parking place?
-            <input type="checkbox" formControllName="parking" (change)="changeCheckbox($event)">
-          </span>
-          <div *ngIf="parkingWanted ">
-            <input formControlName="parkingPlaces" pInputText placeholder="number of parking places" [ngClass]="{ 'is-invalid': submitted && f.parkingPlaces.errors }"
-            />
-            <div *ngIf="submitted && f.parkingPlaces.errors" class="invalid-feedback">
-              <div *ngIf="f.parkingPlaces.errors.required">Number of parking places is required</div>
-              <div *ngIf="f.parkingPlaces.errors.max">Number of parking places can not be higher than number of reserved tickets</div>
             </div>
+          </div>
 
+          <div class="bookSeating ui-g-12">
+            <div class="ui-inputgroup ui-g-12">
+              <span class="ui-inputgroup-addon">
+                <i class="fa fa-ticket"></i>
+              </span>
+              <label> Numberof tickets
+                <br/>{{seatsModel.length}}</label>
+            </div>
+            <div class="ui-inputgroup ui-g-12">
+              <span class="ui-inputgroup-addon">
+                <i class="fa fa-money"></i>
+              </span>
+              <label> Total to pay
+                <br/> {{seatsModel.length * movie.price}}
+
+              </label>
+              <span class="ui-inputgroup-addon">DKK</span>
+            </div>
+            <div class="ui-g-2">
+              <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Reserve" (click)="onSubmit($event)"></button>
+            </div>
           </div>
         </div>
+        <div class="ui-g-6" *ngIf="user.role == 'user' && availableSeats.length <=0">
 
-        <div class="bookSeating ui-g-12">
-          <div class="ui-inputgroup ui-g-12">
-            <span class="ui-inputgroup-addon">
-              <i class="fa fa-ticket"></i>
-            </span>
-            <label> Numberof tickets
-              <br/>{{seatsModel.length}}</label>
-          </div>
-          <div class="ui-inputgroup ui-g-12">
-            <span class="ui-inputgroup-addon">
-              <i class="fa fa-money"></i>
-            </span>
-            <label> Total to pay
-              <br/> {{seatsModel.length * movie.price}}
+          <h3>We are sorry the movie is sold out</h3>
+        </div>
 
-            </label>
-            <span class="ui-inputgroup-addon">DKK</span>
+        <div class="ui-g-12" *ngIf="user.role == 'admin'">
+
+          <div class="ui-g-1">
+            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Update" (click)="update(movie.id)"></button>
           </div>
-          <div class="ui-g-2">
-            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Reserve" (click)="onSubmit($event)"></button>
+          <div class="ui-g-1">
+            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" id="delete" label="Delete" (click)="delete($event)"></button>
           </div>
         </div>
       </div>
-
-      <div class="ui-g-12" *ngIf="user.role == 'admin'">
-
-        <div class="ui-g-1">
-          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Update" (click)="update($event)"></button>
-        </div>
-        <div class="ui-g-1">
-          <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Delete" (click)="delete($event)"></button>
-        </div>
-      </div>
-
     </form>
   </div>
 </div>

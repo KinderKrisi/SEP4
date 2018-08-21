@@ -2,11 +2,11 @@
 
   <div class="ui-g-12">
 
-    <h1>Your reservations will be displayed here</h1>
+    <h1>My reservations</h1>
 
   </div>
   <div class="ui-g-6 moviereservations">
-    <h1> Movies reserved</h1>
+    <h3> Movies reserved</h3>
     <ul>
       <li *ngFor="let movie of reservedMovies">
         {{movie.name}}
@@ -17,7 +17,7 @@
   </div>
 
   <div class="ui-g-6 moviereservations">
-    <h1> Parking reserved</h1>
+    <h3> Parking reserved</h3>
     <ul>
         <li *ngFor="let reservation of reservedParking">
           <span> {{reservation.id}}</span>

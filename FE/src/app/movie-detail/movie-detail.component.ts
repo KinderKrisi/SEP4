@@ -10,6 +10,7 @@ import { SelectItem } from '../../../node_modules/primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MovieReservationService } from '../_services/movie-reservation/movie-reservation.service';
 import { MovieService } from '../_services/movie/movie.service';
+import { ToastService } from '../_services/toast/toast.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -42,7 +43,8 @@ export class MovieDetailComponent implements OnInit {
     private movieReservationService: MovieReservationService,
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private router: Router) {
+    private router: Router,
+    private toast: ToastService) {
   }
 
   ngOnInit() {
@@ -56,46 +58,46 @@ export class MovieDetailComponent implements OnInit {
     this.movieDetailForm = this.formBuilder.group({
       selectedSeats: [[], [Validators.required]],
       parking: false,
-      parkingPlaces: [[], [Validators.required/*, Validators.max(this.seatsModel.length)*/]]
+      parkingPlaces: [0]
 
     });
-    console.log("user",  this.user);
     this.parkingWanted = false;
   }
 
   get f() { return this.movieDetailForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
+    if (this.parkingValidation()) {
 
-    // stop here if form is invalid
-    if (this.movieDetailForm.invalid) {
-      return;
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.movieDetailForm.invalid) {
+        return;
+      }
+
+      let _numberOfParking = +this.movieDetailForm.value.parkingPlaces;
+      this.movieDetailForm.value.selectedSeats.forEach(x => {
+        let _wantParking = this.parkingWanted;
+
+        if (_numberOfParking <= 0) {
+          _wantParking = false;
+        }
+
+        this.movieReservation = {
+          endDate: this.movie.endTimeMill,
+          movieId: +this.id,
+          startDate: this.movie.startTimeMill,
+          seatId: x,
+          userId: this.user.id,
+          wantParking: _wantParking
+        }
+        _numberOfParking--;
+        this.sendReservation(this.movieReservation);
+      });
+    } else {
+      this.toast.invalidParking();
     }
-
-    let _numberOfParking = +this.movieDetailForm.value.parkingPlaces;
-    this.movieDetailForm.value.selectedSeats.forEach(x => {
-      let _wantParking = this.parkingWanted;
-      console.log('wantParking',this.movieDetailForm.value.parking);
-      
-      if(_numberOfParking <= 0){
-        console.log('_numberOfParking <= 0', _numberOfParking <= 0);
-        _wantParking = false;
-      }
-
-      console.log("end date",this.movie);
-      this.movieReservation = {
-        endDate: this.movie.endTimeMill,
-        movieId: +this.id,
-        startDate: this.movie.startTimeMill,
-        seatId: x,
-        userId: this.user.id,
-        wantParking: _wantParking
-      }
-      _numberOfParking--;
-      console.log ("sending reservation request ", this.movieReservation);
-      this.sendReservation(this.movieReservation);
-    });
   }
   sendReservation(movieReservation: MovieReservation) {
     return this.movieReservationService.reserveMovie(movieReservation).subscribe();
@@ -105,12 +107,12 @@ export class MovieDetailComponent implements OnInit {
     if (this.movieDetailForm.value.parking) {
       this.movieDetailForm.value.parking = false;
       this.parkingWanted = false;
-      
+
     }
     else {
       this.movieDetailForm.value.parking = true;
       this.parkingWanted = true;
-      
+
      /* this.movieDetailForm = this.formBuilder.group({
         parkingPlaces: [Validators.required, Validators.max(this.seatsModel.length)]
        
@@ -123,16 +125,22 @@ export class MovieDetailComponent implements OnInit {
   }
 
   CreateSeats() {
-      this.availableSeats.map(x=> this.seats.push(
-        {label: `row: ${x.row}, seat: ${x.seatNumber}`, value: x.id}
-      ))
-      console.log("seats only available", this.seats)
+    this.availableSeats.map(x => this.seats.push(
+      { label: `row: ${x.row}, seat: ${x.seatNumber}`, value: x.id }
+    ))
   }
 
   update() {
     console.log('update');
   }
-  delete():void {
-      this.movieService.deleteMovie(this.id).subscribe();
+  delete(): void {
+    this.movieService.deleteMovie(this.id).subscribe();
+  }
+
+  parkingValidation(): boolean {
+    if (this.seatsModel.length >= this.movieDetailForm.value.parkingPlaces) {
+      return true;
+    }
+    return false;
   }
 }
