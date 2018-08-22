@@ -59,14 +59,13 @@
           </div>
         </div>
         <div class="ui-g-6" *ngIf="user.role == 'user' && availableSeats.length <=0">
-
-          <h3>We are sorry the movie is sold out</h3>
+          <h3>We are sorry the show is sold out</h3>
         </div>
 
         <div class="ui-g-12" *ngIf="user.role == 'admin'">
 
           <div class="ui-g-1">
-            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Update" (click)="update(movie.id)"></button>
+            <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" label="Update" (click)="update($event)"></button>
           </div>
           <div class="ui-g-1">
             <button pButton type="button" [disabled]="loading" class="ui-button-raised ui-button-rounded" id="delete" label="Delete" (click)="delete($event)"></button>
