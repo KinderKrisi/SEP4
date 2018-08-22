@@ -1,0 +1,43 @@
+6.8. non functional requirements - Setup
+7.8. CORS fix, token authentication implementation - not used
+     Movie, MoveSeat, User - Model and Controller
+     User Controller HttpPut fix - no update on values that come empty
+     Movie FE
+     Registration FE
+8.8. JWT authentication
+     movie UI
+     movies contain seats
+     movie service implementation
+9.8. transition of DB to SQL
+14.8.log in, movie, my reservation UI's update
+     parking reservation- not used later
+     back to inmemory DB
+15.8.movie reservations save
+     create movie UI, validators
+16.8.UI update
+     movie reservation conroller
+     authentication
+17.8.AuthController, MovieController, MovieReservationController, UserController
+     Models BE+FE update/creation Login, MovieReservation, ParkingPlace, User
+     dataService implementation
+     Addons movieReservation
+     Setting up who can see what + routing 
+18.8.Toast 
+     Date picker
+     Parking admin BE
+     Movie detail
+19.8.DB changes
+     Delete movie impementation Fe
+     Use case update
+     local storage saving for user
+20.8.User detail 
+     admin parking UI
+     Movie reservation fix
+     Project Report first 
+     Movie detail seats fix
+     Movie / parking reservation fixes
+21.1 Activity Diagram
+     User guide
+     UML diagram
+22.2.Activity diagram
+	
